@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206180122) do
+ActiveRecord::Schema.define(version: 20151206215735) do
 
   create_table "a_payments", force: :cascade do |t|
     t.string   "payer",             limit: 255
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20151206180122) do
   end
 
   add_index "requests", ["project_id"], name: "index_requests_on_project_id", using: :btree
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", limit: 255,   null: false
+    t.text     "data",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   add_foreign_key "a_payments", "requests"
   add_foreign_key "b_payments", "b_accounts"
