@@ -10,7 +10,7 @@ class CreateAPayments < ActiveRecord::Migration
       t.string :recipient_bank
       t.integer :recipient_mfo
       t.integer :recipient_egrpou
-      t.decimal :sum
+      t.decimal :sum, :precision => 14, :scale => 2
       t.references :request, index: true, foreign_key: true
       
       t.timestamps null: false
