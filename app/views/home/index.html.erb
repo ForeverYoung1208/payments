@@ -1,35 +1,49 @@
+<div ng-controller='PaymentsListController as PLC'>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Платежи</a>
+      </div>
 
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Все</a></li>
+          <li><a href="#">Подписанные мной</a></li>
+          <li><a href="#">Не подписанные мной</a></li>
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Платежи</a>
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <section>
+    <div class="row">    
+      <h5 class="col-md-1">aaa{{PLC.test}}bbb</h5>
     </div>
+    <div class='row'></div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Все <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Подписанные мной</a></li>
-        <li><a href="#">Не подписанные мной</a></li>
-        
-      </ul>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Поиск</button>
-      </form>
-      
-    </div><!-- /.navbar-collapse -->
+      <table class="col-md-4" ng-table="PLC.tableParams" class="table" show-filter="true">
+        <tr ng-repeat="row in $data">
+            <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+              {{row.name}}
+            </td>
+            <td title="'Age'" filter="{ age: 'text'}" sortable="'age'">
+              {{row.age}}
+            </td>
+        </tr>
+      </table>
+    <div class='row'></div>
 
-  </div><!-- /.container-fluid -->
-</nav>
+    
+  </section>
 
+</div>

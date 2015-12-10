@@ -19,5 +19,6 @@
 //= require angular-flash/dist/angular-flash
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
+//= require ng-table
 
 //= require_tree .
