@@ -5,6 +5,8 @@
     "angular-route": "latest",
     "angular-resource": "latest",
     "bootstrap-sass-official": "latest",
-    "angular-flash": "latest"
+    "angular-flash": "latest",
+    "angular-smart-table": "latest",
+    "angular-bootstrap": "latest"
   }
 }

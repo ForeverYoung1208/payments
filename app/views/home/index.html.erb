@@ -1,4 +1,4 @@
-<div ng-controller='PaymentsListController as PLC'>
+<div ng-controller='PaymentsListController'>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,16 +9,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Платежи</a>
+        <a class="navbar-brand" href="#">Заявки на платежи</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Все</a></li>
-          <li><a href="#">Подписанные мной</a></li>
-          <li><a href="#">Не подписанные мной</a></li>
-          
+          <li ng-class="{active : isActive(1)}"><a ng-click="clickMenu(1)" href="#">Все</a></li>
+          <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Подписанные мной</a></li>
+          <li ng-class="{active : isActive(3)}"><a ng-click="clickMenu(3)"href="#">Не подписанные мной</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
 
@@ -27,21 +26,25 @@
 
   <section>
     <div class="row">    
-      <h5 class="col-md-1">aaa{{PLC.test}}bbb</h5>
+      <h5 class="col-md-1">{{activeMenu}}</h5>
     </div>
-    <div class='row'></div>
+    <div class='row'>
+      <div class='col-md-4'>
+        <table st-table="rowCollection" class="table table-striped ">
+          <thead>
+            <th>name</th>
+            <th>age</th>
+          </thead>
 
-      <table class="col-md-4" ng-table="PLC.tableParams" class="table" show-filter="true">
-        <tr ng-repeat="row in $data">
-            <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-              {{row.name}}
-            </td>
-            <td title="'Age'" filter="{ age: 'text'}" sortable="'age'">
-              {{row.age}}
-            </td>
-        </tr>
-      </table>
-    <div class='row'></div>
+          <tbody>
+            <tr ng-repeat="row in rowCollection">
+              <td> {{row.name}} </td>
+              <td> {{row.age}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     
   </section>
