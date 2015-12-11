@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -13,11 +13,11 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
         <ul class="nav navbar-nav">
           <li ng-class="{active : isActive(1)}"><a ng-click="clickMenu(1)" href="#">Все</a></li>
           <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Подписанные мной</a></li>
-          <li ng-class="{active : isActive(3)}"><a ng-click="clickMenu(3)"href="#">Не подписанные мной</a></li>
+          <li ng-class="{active : isActive(3)}"><a ng-click="clickMenu(3)" href="#">Не подписанные мной</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
 
@@ -26,20 +26,30 @@
 
   <section>
     <div class="row">    
-      <h5 class="col-md-1">{{activeMenu}}</h5>
+      <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> Реестры платежей</h5>
     </div>
     <div class='row'>
-      <div class='col-md-4'>
+      <div class='col-sm-offset-2 col-sm-8'>
         <table st-table="rowCollection" class="table table-striped ">
           <thead>
-            <th>name</th>
-            <th>age</th>
+            <tr>
+            <th>На дату</th>
+            <th>Проект</th>
+            <th>Сумма</th>
+            <th>Утвержден</th>
+            <th>Создан</th>
+            <th>Изменен</th>
+            </tr>
           </thead>
 
           <tbody>
             <tr ng-repeat="row in rowCollection">
-              <td> {{row.name}} </td>
-              <td> {{row.age}} </td>
+              <td>{{row.date}}</td>
+              <td>{{row.project_name}}</td>
+              <td>{{row.sum}}</td>
+              <td>{{row.is_approved|rusBoolean}}</td>
+              <td>{{row.created_at}}</td>
+              <td>{{row.updated_at}}</td>
             </tr>
           </tbody>
         </table>
