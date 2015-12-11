@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'requests/index'
+  #get 'requests/index'
 
   #get 'home/index'
 
