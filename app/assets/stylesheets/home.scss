@@ -3,3 +3,14 @@
 // Tip: By default, the navbar is 50px high.
 
 body { padding-top: 50px; }
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
+.st-selected{
+  background-color: #E7E7E7 !important;
+}

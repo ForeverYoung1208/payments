@@ -1,7 +1,8 @@
 app = angular.module('payments',[
 	'ngResource',
 	'controllers',
-	'filters'
+	'filters',
+	'smart-table'
 ]);
 
 controllers = angular.module('controllers',[])
@@ -14,6 +15,7 @@ controllers.controller("PaymentsListController", [ '$scope',
 			$scope.activeMenu = clicked;
 			$scope.isCollapsed = true;
 		$scope.rowCollection = tabledata.data;
+		$scope.displayedCollection = [].concat($scope.rowCollection);
 ]);
 
 tabledata= {}

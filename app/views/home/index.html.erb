@@ -33,17 +33,17 @@
         <table st-table="rowCollection" class="table table-striped ">
           <thead>
             <tr>
-            <th>На дату</th>
-            <th>Проект</th>
-            <th>Сумма</th>
-            <th>Утвержден</th>
-            <th>Создан</th>
-            <th>Изменен</th>
+              <th st-sort="date" >На дату</th>
+              <th st-sort="project_name">Проект</th>
+              <th st-sort="sum">Сумма</th>
+              <th st-sort="is_approved">Утвержден</th>
+              <th st-sort="created_at">Создан</th>
+              <th st-sort="updated_at">Изменен</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr ng-repeat="row in rowCollection">
+            <tr st-select-row="row" ng-repeat="row in rowCollection">
               <td>{{row.date}}</td>
               <td>{{row.project_name}}</td>
               <td>{{row.sum}}</td>
