@@ -5,20 +5,34 @@ app = angular.module('payments',[
 	'smart-table'
 ]);
 
+
+
 controllers = angular.module('controllers',[])
-controllers.controller("PaymentsListController", [ '$scope',
-	($scope)->
+controllers.controller("PaymentsListController", [ '$scope', '$resource'
+	($scope, $resource)->
 		$scope.activeMenu = 1;
 		$scope.isActive = (current)->
 			current == $scope.activeMenu;
 		$scope.clickMenu = (clicked)->
 			$scope.activeMenu = clicked;
 			$scope.isCollapsed = true;
-		$scope.rowCollection = tabledata.data;
+
+		Request = $resource('/requests/:requestId', { reqestId: "@id", format: 'json' },
+		{ 
+			'query':  {method:'GET', isArray:true},
+			'save':   {method:'PUT'},
+			'create': {method:'POST'}
+		});
+
+		Request.query( (results) ->
+			$scope.rowCollection = results
+		);
+
+#		$scope.rowCollection = tabledata.data;
 		$scope.displayedCollection = [].concat($scope.rowCollection);
 ]);
 
-tabledata= {}
+tabledata = {}
 tabledata.data= [
 	{ 
 		date: "11.12.2015"
