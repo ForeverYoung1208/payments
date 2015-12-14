@@ -3,10 +3,10 @@ class RequestsController < ApplicationController
 	# GET /requests
 	# GET /requests.json
 	def index
-		@requests = Request.all
+		@requests_and_project = Request.joins(:project)
 		respond_to do |format|
 			format.html {} # show.html.erb
-			format.json { render json: @requests }
+			format.json {} # show.html.json.jbuilder
 		end
 	end
 

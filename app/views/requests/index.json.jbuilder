@@ -1,4 +1,4 @@
-json.requests @requests do |request|
+json.array! @requests_and_project  do |request|
 	json.id request.id
 	json.date request.date.strftime('%d.%m.%Y')
 	json.is_approved request.is_approved

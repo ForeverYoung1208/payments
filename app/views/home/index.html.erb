@@ -30,7 +30,7 @@
     </div>
     <div class='row'>
       <div class='col-sm-offset-2 col-sm-8'>
-        <table st-table="rowCollection" class="table table-striped ">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped ">
           <thead>
             <tr>
               <th st-sort="date" >На дату</th>
@@ -43,7 +43,7 @@
           </thead>
 
           <tbody>
-            <tr st-select-row="row" ng-repeat="row in rowCollection">
+            <tr st-select-row="row" ng-repeat="row in displayedCollection">
               <td>{{row.date}}</td>
               <td>{{row.project_name}}</td>
               <td>{{row.sum}}</td>
