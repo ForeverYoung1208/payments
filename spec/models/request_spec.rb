@@ -4,13 +4,11 @@ RSpec.describe Request, type: :model do
 	before :each do
 		@request = FactoryGirl.create(:request) 
 		@b_payment = FactoryGirl.create(:b_payment, {request: @request}) 
+		@a_payment = FactoryGirl.create(:a_payment, {request: @request}) 
+
 	end
 
-	it "test_begin, project name have to be not nil" do
-		expect(@request.project.name).to_not be_nil
-	end
-
-	it "test_begin, project name have to be not nil" do
+	it "test_begin: project name have to be not nil" do
 		expect(@request.project.name).to_not be_nil
 	end
 

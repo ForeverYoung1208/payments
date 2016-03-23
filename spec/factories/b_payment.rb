@@ -5,7 +5,7 @@ FactoryGirl.define do
 
 		sum_allowed 1333
 		sum_rest 1222
-		sum 100
+		sum 70.00
 		recipient "ТОВ Отримувач"
 		detail "Призначення платежу"
 		note "Примітки до платежу"
