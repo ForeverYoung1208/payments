@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 20151206215735) do
   create_table "a_payments", force: :cascade do |t|
     t.string   "payer",             limit: 255
     t.string   "payer_account",     limit: 255
-    t.integer  "payer_mfo",         limit: 4
+    t.string   "payer_mfo",         limit: 255
     t.string   "recipient",         limit: 255
     t.text     "detail",            limit: 65535
-    t.integer  "pecipient_account", limit: 4
+    t.string   "pecipient_account", limit: 255
     t.string   "recipient_bank",    limit: 255
-    t.integer  "recipient_mfo",     limit: 4
-    t.integer  "recipient_egrpou",  limit: 4
+    t.string   "recipient_mfo",     limit: 255
+    t.string   "recipient_egrpou",  limit: 255
     t.decimal  "sum",                             precision: 14, scale: 2
     t.integer  "request_id",        limit: 4
     t.datetime "created_at",                                               null: false
