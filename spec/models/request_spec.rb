@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Request, type: :model do
 	before :each do
 		@request = FactoryGirl.create(:request) 
-		@b_payment = FactoryGirl.create(:b_payment, {request: @request, sum: 30}) 
-		@b_payment = FactoryGirl.create(:b_payment, {request: @request, sum: 40}) 
-		@a_payment = FactoryGirl.create(:a_payment, {request: @request, sum: 70}) 
+		FactoryGirl.create(:a_payment, {request: @request, sum: 10}) 
+		FactoryGirl.create(:a_payment, {request: @request, sum: 60}) 
+		FactoryGirl.create(:b_payment, {request: @request, sum: 30}) 
+		FactoryGirl.create(:b_payment, {request: @request, sum: 40}) 
 
 	end
 
@@ -17,9 +18,11 @@ RSpec.describe Request, type: :model do
 		expect(@request.sum).to eq(70)
 	end
 
-	it "sum of request should give error" do
-		@a_payment.sum = 71
-		expect { @request.sum }.to raise_error
+	it "sum of request with bad payments should give error" do
+		@request.a_payments[0].sum = 71
+		@request.a_payments[0].save
+		expect { @request.sum }.to raise_error( Request::SumError )
+
 	end
 
 
