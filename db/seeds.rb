@@ -40,3 +40,33 @@ requests = Request.create([
 		is_approved: false
 	}
 ])
+
+a_payment = APayment.create([
+	{
+		sum: 10,
+		request: requests[0]
+	},
+	{
+		sum: 60,
+		request: requests[0]
+	},
+	{
+		sum: 80,
+		request: requests[1]
+	}
+])
+
+b_payment = BPayment.create([
+	{
+		sum: 20,
+		request: requests[0]
+	},
+	{
+		sum: 50,
+		request: requests[0]
+	},
+	{
+		sum: 80,
+		request: requests[1]
+	}
+])

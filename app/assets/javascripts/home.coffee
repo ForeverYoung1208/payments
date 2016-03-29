@@ -42,31 +42,24 @@ filters.filter('rusBoolean',->
 )
 
 
-# tabledata = {}
-# tabledata.data= [
-# 	{ 
-# 		date: "11.12.2015"
-# 		project_name: "ISR"
-# 		sum: "100.01"
-# 		is_approved: true
-# 		created_at: "09.12.2015"
-# 		updated_at: "10.12.2015"		
-# 	},{ 
-# 		date: "11.11.2015"
-# 		project_name: "CPR"
-# 		sum: "101.11"
-# 		is_approved: false
-# 		created_at: "09.12.2015"
-# 		updated_at: "10.12.2015"		
-# 	},{ 
-# 		date: "11.10.2015"
-# 		project_name: "Архив ЦИК"
-# 		sum: "102.21"
-# 		is_approved: true
-# 		created_at: "09.12.2015"
-# 		updated_at: "10.12.2015"		
-# 	}
-# ];
+requests_data = {}
+tabledata.data = {
+	id: "0"
+	b_payments: [
+								{ 
+									id: "1"
+									sum: "100.01"
+								},{ 
+									id: "2"
+									sum: "100.01"
+								},{ 
+									id: "3"
+									sum: "100.01"
+								}
+							]
+}
+
+
 
 # #оставил просто как пример итерации по своему массиву
 # tabledata.prepare =->
