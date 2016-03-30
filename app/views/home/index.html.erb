@@ -45,7 +45,7 @@
           </thead>
 
           <tbody>
-            <tr st-select-row="row" ng-repeat="row in displayedCollection">
+            <tr st-select-row="row" ng-repeat="row in displayedCollection" >
               <td>{{row.id}}</td>
               <td>{{row.date}}</td>
               <td>{{row.project_name}}</td>
@@ -53,14 +53,17 @@
               <td>{{row.is_approved|rusBoolean}}</td>
               <td>{{row.created_at}}</td>
               <td>{{row.updated_at}}</td>
-              <td>
+              <td>  
                 <button type="button" ng-click="detailReqest(row)" class="btn btn-sm btn-warning">
                   <i class="glyphicon glyphicon-indent-left">
                   </i>
                 </button>
               </td>
+              <td >-------------------------</td>
             </tr>
+
           </tbody>
+
         </table>
       </div>
     </div>
