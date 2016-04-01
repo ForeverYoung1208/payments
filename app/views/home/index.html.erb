@@ -30,9 +30,9 @@
     </div>
     <div class='row'>
       <div class='col-sm-offset-2 col-sm-8'>
-        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped ">
-          <thead>
-            <tr>
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
+          <thead class="thead-inverse">
+            <tr class="info">
               <th st-sort="date" >Номер</th>
               <th st-sort="date" >На дату</th>
               <th st-sort="project_name">Проект</th>
@@ -45,7 +45,7 @@
           </thead>
 
           <tbody>
-            <tr st-select-row="row" ng-repeat="row in displayedCollection" >
+            <tr st-select-row="row" ng-repeat-start="row in displayedCollection" >
               <td>{{row.id}}</td>
               <td>{{row.date}}</td>
               <td>{{row.project_name}}</td>
@@ -54,13 +54,43 @@
               <td>{{row.created_at}}</td>
               <td>{{row.updated_at}}</td>
               <td>  
-                <button type="button" ng-click="detailReqest(row)" class="btn btn-sm btn-warning">
-                  <i class="glyphicon glyphicon-indent-left">
+                <button 
+                  ng-disabled="!row.b_payments.length>0" 
+                  type="button" 
+                  ng-click="row.is_visible = !row.is_visible" 
+                  class="btn btn-sm btn-warning"
+                >
+                  <i class="glyphicon" ng-class=" {'glyphicon glyphicon-indent-left' : !row.is_visible, 'glyphicon glyphicon-triangle-left' : row.is_visible }">
                   </i>
                 </button>
               </td>
-              <td >-------------------------</td>
+              
             </tr>
+            <tr ng-repeat-end class="my-b_payments" >
+              <td colspan="6" ng-show="row.b_payments.length>0 && row.is_visible==true" >
+
+                <table class="table table-sm">
+                  <thead>
+                    <tr class="my-b_payments">
+                      <td>платежи по статьям</td>
+                      <td>№</td>
+                      <td>сумма</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="my-b_payments" ng-repeat="b_payment in row.b_payments">
+                      <td></td>
+                      <td>{{b_payment.id}}</td>                   
+                      <td>{{b_payment.sum}}</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </td>
+            </tr>
+
 
           </tbody>
 

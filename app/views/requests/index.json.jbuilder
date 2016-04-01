@@ -10,4 +10,5 @@ json.array! @requests_and_project  do |request|
 		json.id b_payment.id
 		json.sum b_payment.sum
 	end
+	json.is_visible false
 end

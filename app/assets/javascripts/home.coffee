@@ -11,11 +11,16 @@ controllers = angular.module('controllers',[])
 controllers.controller("PaymentsListController", [ '$scope', '$resource'
 	($scope, $resource)->
 		$scope.activeMenu = 1;
+		
 		$scope.isActive = (current)->
 			current == $scope.activeMenu;
+		
 		$scope.clickMenu = (clicked)->
 			$scope.activeMenu = clicked;
 			$scope.isCollapsed = true;
+
+		$scope.clickExpandBpayments = (to_show) ->
+			$scope.rowCollection[to_show].is_visible = true
 
 		Request = $resource('/requests/:requestId', { reqestId: "@id", format: 'json' },
 		{ 

@@ -5,12 +5,17 @@
 body { padding-top: 50px; }
 
 .st-sort-ascent:before{
-    content: '\25B2';
+  content: '\25B2';
 }
 
 .st-sort-descent:before{
-    content: '\25BC';
+  content: '\25BC';
 }
 .st-selected{
   background-color: #E7E7E7 !important;
+}
+
+.my-b_payments {
+	font-style: italic;
+	td {border: none !important;}
 }
