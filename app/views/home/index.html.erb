@@ -60,7 +60,9 @@
                 </button>
               </td>
             </tr>
-            <tr ng-repeat-end >+++_{{row.id}}_+++</tr>
+            <tr ng-repeat-end >
+              <td ng-if="row.id==1">+++_{{row.id}}_+++</td>
+            </tr>
           </tbody>
         </table>
       </div>
