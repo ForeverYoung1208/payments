@@ -2,7 +2,9 @@ app = angular.module('payments',[
 	'ngResource',
 	'controllers',
 	'filters',
-	'smart-table'
+	'smart-table',
+	'ngAnimate',
+	'ui.bootstrap'
 ]);
 
 
@@ -45,25 +47,6 @@ filters.filter('rusBoolean',->
 		then 'да'
 		else 'нет'
 )
-
-
-requests_data = {}
-tabledata.data = {
-	id: "0"
-	b_payments: [
-								{ 
-									id: "1"
-									sum: "100.01"
-								},{ 
-									id: "2"
-									sum: "100.01"
-								},{ 
-									id: "3"
-									sum: "100.01"
-								}
-							]
-}
-
 
 
 # #оставил просто как пример итерации по своему массиву

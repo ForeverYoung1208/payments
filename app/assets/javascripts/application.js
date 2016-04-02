@@ -19,4 +19,6 @@
 //= require angular-flash/dist/angular-flash
 //= require angular-rails-templates
 //= require angular-smart-table/dist/smart-table.min.js
+//= require angular-animate/angular-animate.min
+//= require angular-bootstrap/ui-bootstrap.min
 //= require_tree .
