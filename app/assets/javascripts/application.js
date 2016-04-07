@@ -9,10 +9,11 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// 3d row require bootstrap-sass-official/assets/javascripts/bootstrap
+
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require angular/angular.min
 //= require angular-route/angular-route.min
 //= require angular-resource/angular-resource

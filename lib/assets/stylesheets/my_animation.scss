@@ -1,0 +1,24 @@
+.animate-show {
+  opacity: 1;
+  padding: 10px;
+}
+
+.animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide-add {
+  transition: all linear 0.1s;
+}
+
+.animate-show.ng-hide {
+  opacity: 0;
+  padding: 0 10px;
+}
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/
