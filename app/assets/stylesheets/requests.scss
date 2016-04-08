@@ -1,3 +1,20 @@
 // Place all the styles related to the requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
+.st-selected{
+  background-color: #E7E7E7 !important;
+}
+
+.my-b_payments {
+	font-style: italic;
+	td {border: none !important;}
+}
