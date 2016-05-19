@@ -1,16 +1,6 @@
-app = angular.module('payments',[
-	'ngResource',
-	'controllers',
-	'filters',
-	'smart-table',
-	'ngAnimate',
-	'ui.bootstrap'
-]);
-
-
-
-controllers = angular.module('controllers',[])
-controllers.controller("PaymentsListController", [ '$scope', '$resource'
+angular
+	.module('payments')
+	.controller("PaymentsListController", [ '$scope', '$resource'
 	($scope, $resource)->
 		$scope.activeMenu = 1;
 		
@@ -37,16 +27,9 @@ controllers.controller("PaymentsListController", [ '$scope', '$resource'
 
 #		$scope.rowCollection = tabledata.data;
 		# $scope.displayedCollection = [].concat($scope.rowCollection);
-]);
+	]);
 
-#прикольно,ангуляр фильтр работает )))
-filters = angular.module('filters',[])
-filters.filter('rusBoolean',->
-	(input)->
-		if input
-		then 'да'
-		else 'нет'
-)
+
 
 
 # #оставил просто как пример итерации по своему массиву

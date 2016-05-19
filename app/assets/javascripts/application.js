@@ -22,4 +22,7 @@
 //= require angular-smart-table/dist/smart-table.min.js
 //= require angular-animate/angular-animate.min
 //= require angular-bootstrap/ui-bootstrap.min
-//= require_tree .
+//= require app
+//= require requests
+//= require home
+

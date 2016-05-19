@@ -56,17 +56,47 @@ a_payment = APayment.create([
 	}
 ])
 
+b_account = BAccount.create([
+	{
+    number: "1.1.",
+    name: "Рассчетно - кассовое обслуживание"
+	},
+	{
+    number: "2.4.",
+    name: "Инфорамционно - консультационные услуги"
+	}
+])
+
 b_payment = BPayment.create([
 	{
+    b_account: b_account[0],
+    sum_allowed: 500,
+    sum_rest: 100,
 		sum: 20,
+    recipient: "ООО ДЦ приднепровье",
+    detail: "За консультационныеобслуживание счета в ЦБ согл.. сч. №34 от 14.12.14 без НДС",
+    note: "какие - то услуги",
 		request: requests[0]
 	},
 	{
+    b_account: b_account[1],
+    sum_allowed: 500,
+    sum_rest: 200,
 		sum: 50,
+    recipient: "ЧП Сидоров",
+    detail: "За информационные услуги согл. сч. 4545 от 11.11.2011 без НДС",
+    note: "какие - то услуги",
 		request: requests[0]
 	},
+
 	{
+    b_account: b_account[1],
+    sum_allowed: 500,	
+    sum_rest: 150,
 		sum: 80,
+    recipient: "ЧП Иванов ",
+    detail: "За консультационные услуги согл. сч. 4545 от 11.11.2011 без НДС",
+    note: "какие - то услуги",
 		request: requests[1]
 	}
 ])

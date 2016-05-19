@@ -69,22 +69,34 @@
               
             </tr>
             <tr ng-repeat-end class="my-b_payments" >
-              <td class="b_payments_section animate-show" colspan="6" ng-show="row.b_payments.length>0 && row.is_visible==true" >
+              <td class="b_payments_section animate-show" colspan="8" ng-show="row.b_payments.length>0 && row.is_visible==true" >
 
                 <table class="table table-sm">
                   <thead>
                     <tr class="my-b_payments">
-                      <td>платежи по статьям</td>
                       <td>№</td>
-                      <td>сумма</td>
-                      <td></td>
+                      <td colspan="2">платежи по статьям:</td>
+                      <td>Утвержденный лимит</td>
+                      <td>Остаток</td>
+                      <td>Необходимая Сумма</td>
+                      <td>Получатель</td>
+                      <td>Назначение</td>
+                      <td>Примечание</td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="my-b_payments" ng-repeat="b_payment in row.b_payments">
-                      <td></td>
                       <td>{{b_payment.id}}</td>                   
+                      <td>{{b_payment.b_acc_number}}</td>                   
+                      <td>{{b_payment.b_acc_name}}</td>                   
+                      <td>{{b_payment.sum_allowed}}</td>
+                      <td>{{b_payment.sum_rest}}</td>
                       <td>{{b_payment.sum}}</td>
+
+                      <td>{{b_payment.recipient}}</td>
+                      <td>{{b_payment.detail}}</td>
+                      <td>{{b_payment.note}}</td>
+
                       <td></td>
                     </tr>
                   </tbody>
