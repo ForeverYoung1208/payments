@@ -31,8 +31,8 @@
       <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> Заявки на платежи</h5>
     </div>
     <div class='row'>
-      <div class='col-sm-offset-2 col-sm-8'>
-        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
+      <div class='col-sm-offset-0 col-sm-12'>
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-big">
           <thead class="thead-inverse">
             <tr class="info">
               <th st-sort="date" >Номер</th>
@@ -47,7 +47,7 @@
           </thead>
 
           <tbody>
-            <tr st-select-row="row" ng-repeat-start="row in displayedCollection" >
+            <tr class="request_row" ng-repeat-start="row in displayedCollection" >
               <td>{{row.id}}</td>
               <td>{{row.date}}</td>
               <td>{{row.project_name}}</td>
@@ -74,28 +74,27 @@
                 <table class="table table-sm">
                   <thead>
                     <tr class="my-b_payments">
-                      <td>№</td>
-                      <td colspan="2">платежи по статьям:</td>
-                      <td>Утвержденный лимит</td>
-                      <td>Остаток</td>
-                      <td>Необходимая Сумма</td>
-                      <td>Получатель</td>
-                      <td>Назначение</td>
-                      <td>Примечание</td>
+                      <th>№</th>
+                      <th colspan="2">платежи по статьям:</th>
+                      <th>Утв. лимит</th>
+                      <th>Остаток</th>
+                      <th>Необх. Сумма</th>
+                      <th>Получатель</th>
+                      <th>Назначение</th>
+                      <th>Примечание</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="my-b_payments" ng-repeat="b_payment in row.b_payments">
-                      <td>{{b_payment.id}}</td>                   
-                      <td>{{b_payment.b_acc_number}}</td>                   
-                      <td>{{b_payment.b_acc_name}}</td>                   
-                      <td>{{b_payment.sum_allowed}}</td>
-                      <td>{{b_payment.sum_rest}}</td>
-                      <td>{{b_payment.sum}}</td>
-
-                      <td>{{b_payment.recipient}}</td>
-                      <td>{{b_payment.detail}}</td>
-                      <td>{{b_payment.note}}</td>
+                      <td class="td1">{{b_payment.id}}</td>                   
+                      <td class="td2">{{b_payment.b_acc_number}}</td>                   
+                      <td class="td3">{{b_payment.b_acc_name}}</td>                   
+                      <td class="td4">{{b_payment.sum_allowed}}</td>
+                      <td class="td5">{{b_payment.sum_rest}}</td>
+                      <td class="td6">{{b_payment.sum}}</td>
+                      <td class="td7">{{b_payment.recipient}}</td>
+                      <td class="td8">{{b_payment.detail}}</td>
+                      <td class="td9">{{b_payment.note}}</td>
 
                       <td></td>
                     </tr>
