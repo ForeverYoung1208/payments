@@ -20,7 +20,45 @@
           <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Резерв</a></li>
           <li ng-class="{active : isActive(3)}"><a ng-click="clickMenu(3)" href="#">Резерв</a></li>
         </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+<!-- TODO: move it all to partial, long tags move to helpers -->
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <span class="glyphicon glyphicon-user"></span>
+                <%= current_user.email%>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <span class="glyphicon glyphicon-log-out"></span>
+                Logout
+              <% end %>
+            </li>
+          <% else %>
+
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <span class="glyphicon glyphicon-user"></span>
+                New user
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to new_user_session_path do %>
+                <span class="glyphicon glyphicon-log-in"></span>
+                Login
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
       </div><!-- /.navbar-collapse -->
+
 
     </div><!-- /.container-fluid -->
   </nav>

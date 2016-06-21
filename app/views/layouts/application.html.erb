@@ -8,10 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body ng-app="payments">
-<%= content_tag( :div, notice, :id=>'notice') if !notice.nil? %>
+  <%= content_tag( :div, notice, :id=>'notice') if !notice.nil? %>
+  <%= content_tag( :div, alert, :id=>'alert') if !alert.nil? %>
 
-
-<%= yield %>
+	<%= yield %>
 
 </body>
 </html>
