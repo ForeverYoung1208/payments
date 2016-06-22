@@ -27,10 +27,8 @@
 <!-- TODO: move it all to partial, long tags move to helpers -->
           <% if user_signed_in? %>
             <li>
-              <%= link_to edit_user_registration_path do %>
-                <span class="glyphicon glyphicon-user"></span>
-                <%= current_user.email%>
-              <% end %>
+              <% byebug %>
+              <%= glyph_link_to('-user', edit_user_registration_path) { current_user.email } %>
             </li>
 
             <li>
