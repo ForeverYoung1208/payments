@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <%= link_to 'Согласование платежей', root_path, class: 'navbar-brand' %>
+        <%= glyph_link_to('', root_path, class: 'navbar-brand') {'Согласование платежей'} %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,32 +27,20 @@
 <!-- TODO: move it all to partial, long tags move to helpers -->
           <% if user_signed_in? %>
             <li>
-              <%= link_to edit_user_registration_path do %>
-                <span class="glyphicon glyphicon-user"></span>
-                <%= current_user.email%>
-              <% end %>
+              <%= glyph_link_to( '-user', edit_user_registration_path) { current_user.email }%>
             </li>
 
             <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <span class="glyphicon glyphicon-log-out"></span>
-                Logout
-              <% end %>
+              <%= glyph_link_to( '-log-out', destroy_user_session_path, method: :delete) { ' Logout' } %>
             </li>
+
           <% else %>
-
             <li>
-              <%= link_to new_user_registration_path do %>
-                <span class="glyphicon glyphicon-user"></span>
-                New user
-              <% end %>
+              <%= glyph_link_to( '-user', new_user_registration_path) { ' New user'} %>
             </li>
 
             <li>
-              <%= link_to new_user_session_path do %>
-                <span class="glyphicon glyphicon-log-in"></span>
-                Login
-              <% end %>
+              <%= glyph_link_to( '-log-in', new_user_session_path) { ' Login'} %>
             </li>
           <% end %>
         </ul>
