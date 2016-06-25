@@ -29,7 +29,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-  <section>
+  <section class="container-fluid">
     <div class="row">    
       <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> Заявки на платежи</h5>
     </div>
@@ -74,7 +74,7 @@
             <tr ng-repeat-end class="my-b_payments" >
               <td class="b_payments_section animate-show" colspan="8" ng-show="row.b_payments.length>0 && row.is_visible==true" >
 <!-- todo: insert image of right arrow, move styles into css, visualize a_payments here-->
-                <table class="table table-sm" style="width: 95%">
+                <table class="table table-sm">
                   <thead>
                     <tr class="my-b_payments">
                       <th>№</th>
@@ -85,6 +85,7 @@
                       <th>Получатель</th>
                       <th>Назначение</th>
                       <th>Примечание</th>
+                      <th>NAV</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,12 +99,12 @@
                       <td class="td7">{{b_payment.recipient}}</td>
                       <td class="td8">{{b_payment.detail}}</td>
                       <td class="td9">{{b_payment.note}}</td>
-
+                      <td class="td10"></td>
                       <td></td>
                     </tr>
                   </tbody>
                 </table>
-                <div style="width: 3%; float: left; display: inline-block;"><%= glyph_link_to('-arrow-right','') {''} %></div>
+                <div><%= glyph_link_to('-arrow-right','') {''} %></div>
 
               </td>
             </tr>
@@ -114,8 +115,7 @@
         </table>
       </div>
     </div>
-
-    
+   
   </section>
 
 </div>
