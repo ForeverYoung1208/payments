@@ -73,7 +73,6 @@
             </tr>
             <tr ng-repeat-end class="my-b_payments" >
               <td class="b_payments_section animate-show" colspan="8" ng-show="row.b_payments.length>0 && row.is_visible==true" >
-<!-- todo: insert image of right arrow, move styles into css, visualize a_payments here-->
                 <table class="table table-sm">
                   <thead>
                     <tr class="my-b_payments">
@@ -85,7 +84,16 @@
                       <th>Получатель</th>
                       <th>Назначение</th>
                       <th>Примечание</th>
-                      <th>NAV</th>
+                      <th>
+                        <button 
+                          type="button" 
+                          class="btn btn-info"
+                          ng-click="getAPayments(row.id)"
+                        >
+
+                          К платежам <span class="glyphicon glyphicon-menu-right"></span> 
+                        </button>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,7 +112,6 @@
                     </tr>
                   </tbody>
                 </table>
-                <div><%= glyph_link_to('-arrow-right','') {''} %></div>
 
               </td>
             </tr>

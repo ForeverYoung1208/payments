@@ -11,25 +11,44 @@ angular
 			$scope.activeMenu = clicked;
 			$scope.isCollapsed = true;
 
-		$scope.clickExpandBpayments = (to_show) ->
-			$scope.rowCollection[to_show].is_visible = true
 
-		Request = $resource('/requests/:requestId', { reqestId: "@id", format: 'json' },
+		RequestAll = $resource('/requests', { format: 'json' },
 		{ 
 			'query':  {method:'GET', isArray:true},
 			'save':   {method:'PUT'},
 			'create': {method:'POST'}
 		});
 
-		Request.query( (results) ->
+		RequestAll.query( (results) ->
 			$scope.rowCollection = results
 		);
 
-#		$scope.rowCollection = tabledata.data;
-		# $scope.displayedCollection = [].concat($scope.rowCollection);
+		$scope.getAPayments = (requestId)->
+			RequestOne = $resource('/requests/:requestId', { requestId, format: 'json' },
+			{ 
+				'query':  {method:'GET', isArray:true},
+				'save':   {method:'PUT'},
+				'create': {method:'POST'}
+			});
+
+			RequestOne.query( (results) ->
+				$scope.rowCollection[requestId].APayments = results
+			);
+
+
+
+
 	]);
 
 
+
+
+#		$scope.clickExpandBpayments = (to_show) ->
+#			$scope.rowCollection[to_show].is_visible = true
+
+
+#		$scope.rowCollection = tabledata.data;
+		# $scope.displayedCollection = [].concat($scope.rowCollection);
 
 
 # #оставил просто как пример итерации по своему массиву
