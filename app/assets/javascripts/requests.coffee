@@ -24,7 +24,7 @@ angular
 		);
 
 		$scope.getAPayments = (requestId)->
-			RequestOne = $resource('/requests/:requestId', { requestId, format: 'json' },
+			RequestOne = $resource('/requests/:requestId/aPayments', { requestId, format: 'json' },
 			{ 
 				'query':  {method:'GET', isArray:true},
 				'save':   {method:'PUT'},

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources 'requests', only: [:index, :show, :new, :create]
+  resources 'requests', only: [:index, :show, :new, :create, :aPayments] do 
+    get 'aPayments', on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

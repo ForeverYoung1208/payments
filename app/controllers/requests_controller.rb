@@ -5,8 +5,8 @@ class RequestsController < ApplicationController
 	def index
 		@requests_and_project = Request.joins(:project)
 		respond_to do |format|
-			format.html {} # show.html.erb
-			format.json {} # show.html.json.jbuilder
+			format.html {} # index.html.erb
+			format.json {} # index.json.jbuilder
 		end
 	end
 
@@ -19,6 +19,18 @@ class RequestsController < ApplicationController
 			format.json { render json: @request }
 		end
 	end	
+
+	# GET /requests/1/aPayments
+	# GET /requests/1/aPayments.json
+	def aPayments
+		@request = Request.find(params[:id])
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json {} # aPayments.json.jbuilder
+		end
+	end	
+
+
 
 	# PUT /requests/1
 	# PUT /requests/1.json
