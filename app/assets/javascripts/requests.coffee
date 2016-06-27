@@ -23,20 +23,20 @@ angular
 			$scope.rowCollection = results
 		);
 
-		$scope.getAPayments = (requestId)->
-			RequestOne = $resource('/requests/:requestId/aPayments', { requestId, format: 'json' },
+		$scope.togglePayments = (request)->
+			r_id = request.id
+			RequestOne = $resource('/requests/:r_id/aPayments', { r_id, format: 'json' },
 			{ 
-				'query':  {method:'GET', isArray:true},
+				'query':  {method:'GET'},
 				'save':   {method:'PUT'},
 				'create': {method:'POST'}
 			});
 
 			RequestOne.query( (results) ->
-				$scope.rowCollection[requestId].APayments = results
+				request.APayments = results
 			);
 
-
-
+			request.is_bpayments_visible = !request.is_bpayments_visible;
 
 	]);
 

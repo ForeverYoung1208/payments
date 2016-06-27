@@ -71,9 +71,14 @@
               </td>
               
             </tr>
+
             <tr ng-repeat-end class="my-b_payments" >
-              <td class="b_payments_section animate-show" colspan="8" ng-show="row.b_payments.length>0 && row.is_visible==true" >
-                <table class="table table-sm">
+              <td class="b_payments_section animate-show-request" colspan="8" ng-show="row.b_payments.length>0 && row.is_visible==true" >
+
+                <table 
+                  class="table table-sm animate-show_payments" 
+                  ng-show="row.is_bpayments_visible==true"
+                >
                   <thead>
                     <tr class="my-b_payments">
                       <th>№</th>
@@ -88,7 +93,7 @@
                         <button 
                           type="button" 
                           class="btn btn-info"
-                          ng-click="getAPayments(row.id)"
+                          ng-click="togglePayments(row)"
                         >
 
                           К платежам <span class="glyphicon glyphicon-menu-right"></span> 
@@ -113,12 +118,12 @@
                   </tbody>
                 </table>
 
+                <table class="table table-sm" ng-show="row.is_bpayments_visible!=true"> 
+                </table> 
+
               </td>
             </tr>
-
-
           </tbody>
-
         </table>
       </div>
     </div>

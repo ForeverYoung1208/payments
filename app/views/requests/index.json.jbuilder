@@ -18,4 +18,5 @@ json.array! @requests_and_project  do |request|
 		json.sum b_payment.sum
 	end
 	json.is_visible false
+	json.is_bpayments_visible true
 end

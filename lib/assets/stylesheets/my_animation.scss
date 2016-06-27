@@ -1,20 +1,41 @@
-.animate-show {
+.animate-show-request {
   opacity: 1;
   padding: 10px;
 }
 
-.animate-show.ng-hide-remove {
+.animate-show-request.ng-hide-remove {
   transition: all linear 0.5s;
 }
 
-.animate-show.ng-hide-add {
+.animate-show-request.ng-hide-add {
   transition: all linear 0.1s;
 }
 
-.animate-show.ng-hide {
+.animate-show-request.ng-hide {
   opacity: 0;
   padding: 0 10px;
 }
+
+
+
+.animate-show_payments {
+  opacity: 1;
+  padding: 10px;
+}
+
+.animate-show_payments.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show_payments.ng-hide-add {
+  transition: all linear 0.1s;
+}
+
+.animate-show_payments.ng-hide {
+  opacity: 0;
+  padding: 0 10px;
+}
+
 
 
 /*
