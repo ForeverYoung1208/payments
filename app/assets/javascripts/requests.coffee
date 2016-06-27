@@ -25,16 +25,17 @@ angular
 
 		$scope.togglePayments = (request)->
 			r_id = request.id
-			RequestOne = $resource('/requests/:r_id/aPayments', { r_id, format: 'json' },
-			{ 
-				'query':  {method:'GET'},
-				'save':   {method:'PUT'},
-				'create': {method:'POST'}
-			});
+			if request.is_bpayments_visible
+				RequestOne = $resource('/requests/:r_id/aPayments', { r_id, format: 'json' },
+				{ 
+					'query':  {method:'GET'},
+					'save':   {method:'PUT'},
+					'create': {method:'POST'}
+				});
 
-			RequestOne.query( (results) ->
-				request.APayments = results
-			);
+				RequestOne.query( (results) ->
+					request.a_payments = results
+				);
 
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 

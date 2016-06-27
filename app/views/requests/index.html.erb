@@ -119,6 +119,46 @@
                 </table>
 
                 <table class="table table-sm" ng-show="row.is_bpayments_visible!=true"> 
+                  <thead>
+                    <tr class="my-a_payments">
+                      <th>
+                        <button 
+                          type="button" 
+                          class="btn btn-info"
+                          ng-click="togglePayments(row)"
+                        >
+                          К платежам <span class="glyphicon glyphicon-menu-left"></span> 
+                        </button>
+                      </th>
+
+                      <th>№</th>
+                      <th>Плательщик</th>
+                      <th>Счет плат.</th>
+                      <th>МФО плат.</th>
+                      <th>Получатель</th>
+                      <th>Назначение</th>
+                      <th>Счет получ.</th>
+                      <th>Банк получ.</th>
+                      <th>МФО получ.</th>
+                      <th>ЕГРПОУ получ.</th>
+                      <th>Сумма</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="my-a_payments" ng-repeat="a_payment in row.a_payments">
+                      <td class="td1">{{a_payment.id}}</td>                   
+                      <td class="td2">{{a_payment.payer}}</td>                   
+                      <td class="td3">{{a_payment.payer_account}}</td>                   
+                      <td class="td4">{{a_payment.payer_mfo}}</td>
+                      <td class="td5">{{a_payment.recipient}}</td>
+                      <td class="td6">{{a_payment.detail}}</td>
+                      <td class="td7">{{a_payment.recipient_account}}</td>
+                      <td class="td8">{{a_payment.recipient_bank}}</td>
+                      <td class="td9">{{a_payment.recipient_mfo}}</td>
+                      <td class="td10">{{a_payment.recipient_egrpou}}</td>
+                      <td class="td11">{{a_payment.sum}}</td>
+                    </tr>
+                  </tbody>
                 </table> 
 
               </td>
