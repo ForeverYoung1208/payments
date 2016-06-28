@@ -16,18 +16,34 @@
 
 .my-b_payments {
 	font-style: italic;
-	.td1 { width:3% };
-	.td2 { width:3% };
-	.td3 { width:13% };
-	.td4 { width:3% };
-	.td5 { width:3% };
-	.td6 { width:3% };
-	.td7 { width:23% };
-	.td8 { width:23% };
-	.td9 { width:23% };
-	.td10 { width:3% };
-
+	.id { width:2% };
+	.b_acc_number { width:3% };
+	.b_acc_name { width:13% };
+	.sum_allowed { width:5% };
+	.sum_rest { width:5% };
+	.sum { width:5% };
+	.recipient { width:23% };
+	.detail { width:23% };
+	.note { width:23% };
+	.btn {};
 }
+
+.my-a_payments {
+	font-style: italic;
+	.btn {};
+	.id { width:2% };
+	.payer { width:10% };
+	.payer_account { width:10% };
+	.payer_mfo { width:5% };
+	.recipient { width:10% };
+	.detail { width:10% };
+	.recipient_account { width:10% };
+	.recipient_bank { width:10% };
+	.recipient_mfo { width:10% };
+	.recipient_egrpou { width:10% };
+	.sum { width:5% };
+}
+
 
 .table-big {
 	table-layout: fixed;

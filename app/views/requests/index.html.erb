@@ -54,7 +54,7 @@
               <td>{{row.id}}</td>
               <td>{{row.date}}</td>
               <td>{{row.project_name}}</td>
-              <td>{{row.sum}}</td>
+              <td>{{row.sum | number:2}}</td>
               <td>{{row.is_approved|rusBoolean}}</td>
               <td>{{row.created_at}}</td>
               <td>{{row.updated_at}}</td>
@@ -103,17 +103,16 @@
                   </thead>
                   <tbody>
                     <tr class="my-b_payments" ng-repeat="b_payment in row.b_payments">
-                      <td class="td1">{{b_payment.id}}</td>                   
-                      <td class="td2">{{b_payment.b_acc_number}}</td>                   
-                      <td class="td3">{{b_payment.b_acc_name}}</td>                   
-                      <td class="td4">{{b_payment.sum_allowed}}</td>
-                      <td class="td5">{{b_payment.sum_rest}}</td>
-                      <td class="td6">{{b_payment.sum}}</td>
-                      <td class="td7">{{b_payment.recipient}}</td>
-                      <td class="td8">{{b_payment.detail}}</td>
-                      <td class="td9">{{b_payment.note}}</td>
-                      <td class="td10"></td>
-                      <td></td>
+                      <td class="id"          >{{b_payment.id}}</td>                   
+                      <td class="b_acc_number">{{b_payment.b_acc_number}}</td>                   
+                      <td class="b_acc_name"  >{{b_payment.b_acc_name}}</td>                   
+                      <td class="sum_allowed" >{{b_payment.sum_allowed | number:2}}</td>
+                      <td class="sum_rest"    >{{b_payment.sum_rest | number:2}}</td>
+                      <td class="sum"         >{{b_payment.sum | number:2}}</td>
+                      <td class="recipient"   >{{b_payment.recipient}}</td>
+                      <td class="detail"      >{{b_payment.detail}}</td>
+                      <td class="note"        >{{b_payment.note}}</td>
+                      <td class="btn"         ></td>
                     </tr>
                   </tbody>
                 </table>
@@ -127,7 +126,7 @@
                           class="btn btn-info"
                           ng-click="togglePayments(row)"
                         >
-                          К платежам <span class="glyphicon glyphicon-menu-left"></span> 
+                          К статьям <span class="glyphicon glyphicon-menu-left"></span> 
                         </button>
                       </th>
 
@@ -146,17 +145,18 @@
                   </thead>
                   <tbody>
                     <tr class="my-a_payments" ng-repeat="a_payment in row.a_payments">
-                      <td class="td1">{{a_payment.id}}</td>                   
-                      <td class="td2">{{a_payment.payer}}</td>                   
-                      <td class="td3">{{a_payment.payer_account}}</td>                   
-                      <td class="td4">{{a_payment.payer_mfo}}</td>
-                      <td class="td5">{{a_payment.recipient}}</td>
-                      <td class="td6">{{a_payment.detail}}</td>
-                      <td class="td7">{{a_payment.recipient_account}}</td>
-                      <td class="td8">{{a_payment.recipient_bank}}</td>
-                      <td class="td9">{{a_payment.recipient_mfo}}</td>
-                      <td class="td10">{{a_payment.recipient_egrpou}}</td>
-                      <td class="td11">{{a_payment.sum}}</td>
+                      <td class="btn"   ></td>
+                      <td class="id"  >{{a_payment.id}}</td>                   
+                      <td class="payer"  >{{a_payment.payer}}</td>                   
+                      <td class="payer_account"  >{{a_payment.payer_account}}</td>                   
+                      <td class="payer_mfo"  >{{a_payment.payer_mfo}}</td>
+                      <td class="recipient"  >{{a_payment.recipient}}</td>
+                      <td class="detail"  >{{a_payment.detail}}</td>
+                      <td class="recipient_account"  >{{a_payment.recipient_account}}</td>
+                      <td class="recipient_bank"  >{{a_payment.recipient_bank}}</td>
+                      <td class="recipient_mfo"  >{{a_payment.recipient_mfo}}</td>
+                      <td class="recipient_egrpou"  >{{a_payment.recipient_egrpou}}</td>
+                      <td class="sum"  >{{a_payment.sum | number:2 }}</td>
                     </tr>
                   </tbody>
                 </table> 

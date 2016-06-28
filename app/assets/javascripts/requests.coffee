@@ -34,7 +34,7 @@ angular
 				});
 
 				RequestOne.query( (results) ->
-					request.a_payments = results
+					request.a_payments = results.a_payments
 				);
 
 			request.is_bpayments_visible = !request.is_bpayments_visible;
