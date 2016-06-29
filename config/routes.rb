@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources 'requests', only: [:index, :show, :new, :create, :aPayments] do 
     get 'aPayments', on: :member
+    get 'bPayments', on: :member
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

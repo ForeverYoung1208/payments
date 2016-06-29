@@ -2,39 +2,47 @@
   opacity: 1;
   padding: 10px;
 }
-
 .animate-show-request.ng-hide-remove {
   transition: all linear 0.5s;
 }
-
 .animate-show-request.ng-hide-add {
   transition: all linear 0.1s;
 }
-
 .animate-show-request.ng-hide {
   opacity: 0;
   padding: 0 10px;
 }
 
 
-
-.animate-show_payments {
+.animate-show_bpayments {
   opacity: 1;
-  padding: 10px;
 }
-
-.animate-show_payments.ng-hide-remove {
+.animate-show_bpayments.ng-hide-remove {
   transition: all linear 0.5s;
 }
-
-.animate-show_payments.ng-hide-add {
+.animate-show_bpayments.ng-hide-add {
   transition: all linear 0.1s;
 }
-
-.animate-show_payments.ng-hide {
+.animate-show_bpayments.ng-hide {
+  transform: translate(-350px,0);
   opacity: 0;
-  padding: 0 10px;
 }
+
+
+.animate-show_apayments {
+  opacity: 1;
+}
+.animate-show_apayments.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+.animate-show_apayments.ng-hide-add {
+  transition: all linear 0.1s;
+}
+.animate-show_apayments.ng-hide {
+  transform: translate(350px,0);
+  opacity: 0;
+}
+
 
 
 

@@ -30,6 +30,13 @@ class RequestsController < ApplicationController
 		end
 	end	
 
+	def bPayments
+		@request = Request.find(params[:id])
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json {} # bPayments.json.jbuilder
+		end
+	end	
 
 
 	# PUT /requests/1

@@ -23,23 +23,35 @@ angular
 			$scope.rowCollection = results
 		);
 
+		get_payments = (request, typePayments) ->
+			r_id = request.id
+			RequestOne = $resource('/requests/:r_id/:typePayments', { r_id, typePayments, format: 'json' },
+			{ 
+				'query':  {method:'GET'},
+				'save':   {method:'PUT'},
+				'create': {method:'POST'}
+			});
+
+			RequestOne.query( (results) ->
+				request.a_payments = results.a_payments if typePayments == 'aPayments'
+				request.b_payments = results.b_payments if typePayments == 'bPayments'
+			);
+
+
 		$scope.togglePayments = (request)->
 			r_id = request.id
 			if request.is_bpayments_visible
-				RequestOne = $resource('/requests/:r_id/aPayments', { r_id, format: 'json' },
-				{ 
-					'query':  {method:'GET'},
-					'save':   {method:'PUT'},
-					'create': {method:'POST'}
-				});
-
-				RequestOne.query( (results) ->
-					request.a_payments = results.a_payments
-				);
+				get_payments(request, 'aPayments')
+			if !request.is_bpayments_visible
+				get_payments(request, 'bPayments')
 
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 
 	]);
+
+
+
+
 
 
 
