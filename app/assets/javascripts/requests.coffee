@@ -44,8 +44,21 @@ angular
 				get_payments(request, 'aPayments')
 			if !request.is_bpayments_visible
 				get_payments(request, 'bPayments')
-
 			request.is_bpayments_visible = !request.is_bpayments_visible;
+	  
+		$scope.inlineOptions = 
+	    showWeeks: true
+
+	  $scope.dateOptions =
+	    startingDay: 1
+
+	  $scope.calendar1 =
+	  	opened: false
+
+
+	  $scope.open_calendar1 = () ->
+	  	$scope.calendar1.opened = true;
+
 
 	]);
 

@@ -31,7 +31,25 @@
 
   <section class="container-fluid">
     <div class="row">    
-      <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> Заявки на платежи</h5>
+      <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> 
+        Заявки на платежи
+
+        <p class="input-group">
+          <input 
+            type="text"
+            class="form-control"
+            ng-model="date_from"
+            uib-datepicker-popup="dd.MM.yyyy"
+            datepicker-options="dateOptions"
+            is-open="calendar1.opened"
+          >
+
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open_calendar1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+
+      </h5>
     </div>
     <div class='row'>
       <div class='col-sm-offset-0 col-sm-12'>

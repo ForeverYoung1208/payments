@@ -43,16 +43,43 @@ requests = Request.create([
 
 a_payment = APayment.create([
 	{
+		request: requests[0],
+		payer: 'ООО ИСЄЄР',
+		payer_account: '2600012345',
+		payer_mfo: '305299',
+		recipient: 'ООО Рога и копіта',
+		detail: 'За рога и за копіта согл. сч 3434 от 11.11.11 в тч НДС 45.00',
+		recipient_account: '2600434012345',
+		recipient_bank: 'Банк михайловский'
+		recipient_mfo: '456454'
+		recipient_egrpou: '65498721'
 		sum: 10,
-		request: requests[0]
 	},
 	{
+		request: requests[0],
+		payer: 'ООО ИСЄЄР2',
+		payer_account: '260001233451',
+		payer_mfo: '305299',
+		recipient: 'ООО Рога и копіта',
+		detail: 'За рога и за копіта согл. hfgh fgh df  сч 3434 от 11.11.11 в тч НДС 45.00',
+		recipient_account: '2600434012345',
+		recipient_bank: 'Банк михайловский'
+		recipient_mfo: '456454'
+		recipient_egrpou: '65498721'
 		sum: 60,
-		request: requests[0]
 	},
 	{
+		request: requests[1],
+		payer: 'ООО ИСЄЄР3',
+		payer_account: '260001234532',
+		payer_mfo: '305299',
+		recipient: 'ООО Рога и копіта',
+		detail: 'За рога и за копіта согл. yrtytr rt yy r rty  ytyty сч 3434 от 11.11.11 в тч НДС 45.00',
+		recipient_account: '2600434012345',
+		recipient_bank: 'Банк михайловский'
+		recipient_mfo: '456454'
+		recipient_egrpou: '65498721'
 		sum: 80,
-		request: requests[1]
 	}
 ])
 
