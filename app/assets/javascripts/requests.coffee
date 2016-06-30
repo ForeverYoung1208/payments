@@ -52,12 +52,17 @@ angular
 	  $scope.dateOptions =
 	    startingDay: 1
 
+	  $scope.date_from = new Date();
+	 	$scope.date_to = new Date();
 	  $scope.calendar1 =
 	  	opened: false
-
+	  $scope.calendar2 =
+	  	opened: false
 
 	  $scope.open_calendar1 = () ->
 	  	$scope.calendar1.opened = true;
+	  $scope.open_calendar2 = () ->
+	  	$scope.calendar2.opened = true;
 
 
 	]);

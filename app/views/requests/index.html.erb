@@ -32,13 +32,12 @@
   <section class="container-fluid">
     <div class="row">    
       <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> 
-        Заявки на платежи
-
-        <p class="input-group">
+        Задать период отображения: с
+        <div class="input-group calendar-from">
           <input 
             type="text"
             class="form-control"
-            ng-model="date_from"
+            ng-model="date_from_temp"
             uib-datepicker-popup="dd.MM.yyyy"
             datepicker-options="dateOptions"
             is-open="calendar1.opened"
@@ -47,8 +46,32 @@
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open_calendar1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
-        </p>
+        </div>
 
+        по
+
+        <div class="input-group calendar-to">
+          <input 
+            type="text"
+            class="form-control"
+            ng-model="date_to_temp"
+            uib-datepicker-popup="dd.MM.yyyy"
+            datepicker-options="dateOptions"
+            is-open="calendar2.opened"
+          >
+
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open_calendar2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </div>
+      </h5>
+    </div>
+
+
+
+    <div class="row">    
+      <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> 
+        Заявки на платежи. Период отображения с {{date_from | date:'dd.MM.yyyy'}} по {{date_to | date:'dd.MM.yyyy'}}
       </h5>
     </div>
     <div class='row'>
