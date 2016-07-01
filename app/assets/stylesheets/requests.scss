@@ -56,11 +56,23 @@
 }
 
 .set_period{
+	font-size: 14px;
+	text-align: center;
+
+	width: 640px;
+	margin: 10px auto;
+
 	span{
 		float:left;
 		display: inline;
 		.form-control{
-			width: 80%;
-		}
+			width: 75%;
+		};
 	};
-}
+
+	.label_calendar{
+		padding: 10px 6px 0px 0px;
+	}
+
+};
+
