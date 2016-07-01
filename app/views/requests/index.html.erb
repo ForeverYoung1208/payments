@@ -31,9 +31,9 @@
 
   <section class="container-fluid">
     <div class="row">    
-      <h5 class='col-sm-offset-2 col-sm-8 text-center page-header'> 
-        Задать период отображения: с
-        <div class="input-group calendar-from">
+      <div class='col-sm-offset-2 col-sm-8 text-center page-header set_period'> 
+        <span>Задать период отображения: с</span>
+        <span class="input-group">
           <input 
             type="text"
             class="form-control"
@@ -46,11 +46,11 @@
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open_calendar1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
-        </div>
+        </span>
 
-        по
+        <span>по</span>
 
-        <div class="input-group calendar-to">
+        <span class="input-group">
           <input 
             type="text"
             class="form-control"
@@ -63,8 +63,8 @@
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open_calendar2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
-        </div>
-      </h5>
+        </span>
+      </div>
     </div>
 
 

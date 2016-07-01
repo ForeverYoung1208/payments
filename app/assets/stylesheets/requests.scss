@@ -54,3 +54,13 @@
 	  background-color: #E7E7E7 !important;
 	}
 }
+
+.set_period{
+	span{
+		float:left;
+		display: inline;
+		.form-control{
+			width: 80%;
+		}
+	};
+}
