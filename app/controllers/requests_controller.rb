@@ -3,7 +3,16 @@ class RequestsController < ApplicationController
 	# GET /requests
 	# GET /requests.json
 	def index
-		@requests_and_project = Request.joins(:project)
+		if params[:date_from] or params[:date_to]
+			params[:date_from]||= Time.now.to_s(:db)
+			params[:date_to]||= Time.now.to_s(:db)
+
+			my_date_from = params[:date_from].to_datetime.to_s(:db)
+			my_date_to = params[:date_to].to_datetime.to_s(:db)
+
+			@requests_and_project = Request.joins(:project).where("requests.date >= '#{my_date_from}' and requests.date <= '#{my_date_to}'")
+		end
+
 		respond_to do |format|
 			format.html {} # index.html.erb
 			format.json {} # index.json.jbuilder

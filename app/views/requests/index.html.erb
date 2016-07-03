@@ -15,11 +15,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
         <ul class="nav navbar-nav">
-          <li ng-class="{active : isActive(1)}"><a ng-click="clickMenu(1)" href="#">Все</a></li>
-          <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Подписанные мной</a></li>
-          <li ng-class="{active : isActive(3)}"><a ng-click="clickMenu(3)" href="#">Не подписанные мной</a></li>
-          <li ng-class="{active : isActive(4)}"><a ng-click="clickMenu(4)" href="#">Утвержденные</a></li>
-          <li ng-class="{active : isActive(5)}"><a ng-click="clickMenu(5)" href="#">Не утвержденные</a></li>
+          <li ng-class="{active : isActive(1)}"><a ng-click="clickMenu(1)" href="#">Визирование</a></li>
+          <li ng-class="{active : isActive(2)}"><a ng-click="clickMenu(2)" href="#">Создание и Редактирование</a></li>
         </ul>
 
         <%= render 'home/user_zone' %>
@@ -32,41 +29,44 @@
   <section class="container-fluid">
     <div class="row">    
       <div class='col-sm-offset-0 col-sm-12 text-center'>
-      <div class='set_period' >
+        <div class='set_period' >
 
-        <span class="label_calendar">Задать период отображения: с</span>
-        <span class="input-group">
-          <input 
-            type="text"
-            class="form-control"
-            ng-model="date_from_temp"
-            uib-datepicker-popup="dd.MM.yyyy"
-            datepicker-options="dateOptions"
-            is-open="calendar1.opened"
-          >
+          <span class="label_calendar">Задать период отображения: с</span>
+          <span class="input-group">
+            <input 
+              type="text"
+              class="form-control"
+              ng-model="date_from_temp"
+              uib-datepicker-popup="dd.MM.yyyy"
+              datepicker-options="dateOptions"
+              is-open="calendar1.opened"
+            >
 
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open_calendar1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open_calendar1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
           </span>
-        </span>
 
-        <span class="label_calendar">по</span>
+          <span class="label_calendar">по</span>
 
-        <span class="input-group">
-          <input 
-            type="text"
-            class="form-control"
-            ng-model="date_to_temp"
-            uib-datepicker-popup="dd.MM.yyyy"
-            datepicker-options="dateOptions"
-            is-open="calendar2.opened"
-          >
+          <span class="input-group">
+            <input 
+              type="text"
+              class="form-control"
+              ng-model="date_to_temp"
+              uib-datepicker-popup="dd.MM.yyyy"
+              datepicker-options="dateOptions"
+              is-open="calendar2.opened"
+            >
 
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open_calendar2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open_calendar2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
           </span>
-        </span>
-      </div>
+          <span>
+            <button type="button" class="btn btn-success" ng-click="calendar_ok(date_from_temp, date_to_temp)"><i class="glyphicon glyphicon-ok"></i></button>
+          </span>  
+        </div>
       </div>
     </div>
 
@@ -112,6 +112,19 @@
                   <i class="glyphicon" ng-class=" {'glyphicon glyphicon-indent-left' : !row.is_visible, 'glyphicon glyphicon-triangle-left' : row.is_visible }">
                   </i>
                 </button>
+                <button 
+                  type="button" 
+                  class="btn btn-info"
+                  ng-click="togglePayments(row, date_from, date_to)"
+                  ng-disabled="!row.b_payments.length>0" 
+
+                >
+                  <span ng-show="row.is_bpayments_visible!=true" class="glyphicon glyphicon-menu-left"></span>
+                  <span ng-show="row.is_bpayments_visible!=true"> К статьям</span>
+                  <span ng-show="row.is_bpayments_visible==true"> К платежам</span> 
+                  <span ng-show="row.is_bpayments_visible==true" class="glyphicon glyphicon-menu-right"></span>                   
+                </button>
+
               </td>
               
             </tr>
@@ -122,31 +135,33 @@
                 <table 
                   class="table table-sm animate-show_bpayments" 
                   ng-show="row.is_bpayments_visible==true"
+                  st-table="displayed_bp_collection" st-safe-src="row.b_payments" 
                 >
                   <thead>
                     <tr class="my-b_payments">
-                      <th>№</th>
-                      <th colspan="2">платежи по статьям:</th>
-                      <th>Утв. лимит</th>
-                      <th>Остаток</th>
-                      <th>Необх. Сумма</th>
-                      <th>Получатель</th>
-                      <th>Назначение</th>
-                      <th>Примечание</th>
-                      <th>
+                      <th st-sort="id" >№</th>
+                      <th st-sort="acc_number" colspan="2">платежи по статьям:</th>
+                      <th st-sort="sum_allowed" >Утв. лимит</th>
+                      <th st-sort="sum_rest" >Остаток</th>
+                      <th st-sort="sum" >Необх. Сумма</th>
+                      <th st-sort="recipient" >Получатель</th>
+                      <th st-sort="detail" >Назначение</th>
+                      <th st-sort="note" >Примечание</th>
+
+                      <!-- th>
                         <button 
                           type="button" 
                           class="btn btn-info"
-                          ng-click="togglePayments(row)"
+                          ng-click="togglePayments(row, date_from, date_to)"
                         >
-
                           К платежам <span class="glyphicon glyphicon-menu-right"></span> 
                         </button>
-                      </th>
+                      </th -->
+
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="my-b_payments" ng-repeat="b_payment in row.b_payments">
+                    <tr class="my-b_payments" ng-repeat="b_payment in displayed_bp_collection">
                       <td class="id"          >{{b_payment.id}}</td>                   
                       <td class="b_acc_number">{{b_payment.b_acc_number}}</td>                   
                       <td class="b_acc_name"  >{{b_payment.b_acc_name}}</td>                   
@@ -156,7 +171,10 @@
                       <td class="recipient"   >{{b_payment.recipient}}</td>
                       <td class="detail"      >{{b_payment.detail}}</td>
                       <td class="note"        >{{b_payment.note}}</td>
-                      <td class="btn"         ></td>
+                    </tr>
+
+                    <tr> 
+                      <td colspan="9"><ng_new_bpayment> ng_new_bpayment </ng_new_bpayment></td>
                     </tr>
                   </tbody>
                 </table>
@@ -164,47 +182,51 @@
                 <table 
                   class="table table-sm  animate-show_apayments" 
                   ng-show="row.is_bpayments_visible!=true"
+                  st-table="displayed_ap_collection" st-safe-src="row.a_payments"                   
                 > 
                   <thead>
                     <tr class="my-a_payments">
-                      <th>
+                      <!-- th>
                         <button 
                           type="button" 
                           class="btn btn-info"
-                          ng-click="togglePayments(row)"
+                          ng-click="togglePayments(row, date_from, date_to)"
                         >
                           К статьям <span class="glyphicon glyphicon-menu-left"></span> 
                         </button>
-                      </th>
+                      </th -->
 
-                      <th>№</th>
-                      <th>Плательщик</th>
-                      <th>Счет плат.</th>
-                      <th>МФО плат.</th>
-                      <th>Получатель</th>
-                      <th>Назначение</th>
-                      <th>Счет получ.</th>
-                      <th>Банк получ.</th>
-                      <th>МФО получ.</th>
-                      <th>ЕГРПОУ получ.</th>
-                      <th>Сумма</th>
+                      <th st-sort="id">№</th>
+                      <th st-sort="payer">Плательщик</th>
+                      <th st-sort="payer_account">Счет плат.</th>
+                      <th st-sort="payer_mfo">МФО плат.</th>
+                      <th st-sort="recipient">Получатель</th>
+                      <th st-sort="detail">Назначение</th>
+                      <th st-sort="recipient_account">Счет получ.</th>
+                      <th st-sort="recipient_bank">Банк получ.</th>
+                      <th st-sort="recipient_mfo">МФО получ.</th>
+                      <th st-sort="recipient_egrpou">ЕГРПОУ получ.</th>
+                      <th st-sort="sum">Сумма</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="my-a_payments" ng-repeat="a_payment in row.a_payments">
-                      <td class="btn"   ></td>
-                      <td class="id"  >{{a_payment.id}}</td>                   
-                      <td class="payer"  >{{a_payment.payer}}</td>                   
-                      <td class="payer_account"  >{{a_payment.payer_account}}</td>                   
-                      <td class="payer_mfo"  >{{a_payment.payer_mfo}}</td>
-                      <td class="recipient"  >{{a_payment.recipient}}</td>
-                      <td class="detail"  >{{a_payment.detail}}</td>
-                      <td class="recipient_account"  >{{a_payment.recipient_account}}</td>
-                      <td class="recipient_bank"  >{{a_payment.recipient_bank}}</td>
-                      <td class="recipient_mfo"  >{{a_payment.recipient_mfo}}</td>
+                    <tr class="my-a_payments" ng-repeat="a_payment in displayed_ap_collection">
+                      <td class="id"                >{{a_payment.id}}</td>                   
+                      <td class="payer"             >{{a_payment.payer}}</td>                   
+                      <td class="payer_account"     >{{a_payment.payer_account}}</td>                   
+                      <td class="payer_mfo"         >{{a_payment.payer_mfo}}</td>
+                      <td class="recipient"         >{{a_payment.recipient}}</td>
+                      <td class="detail"            >{{a_payment.detail}}</td>
+                      <td class="recipient_account" >{{a_payment.recipient_account}}</td>
+                      <td class="recipient_bank"    >{{a_payment.recipient_bank}}</td>
+                      <td class="recipient_mfo"     >{{a_payment.recipient_mfo}}</td>
                       <td class="recipient_egrpou"  >{{a_payment.recipient_egrpou}}</td>
-                      <td class="sum"  >{{a_payment.sum | number:2 }}</td>
+                      <td class="sum"               >{{a_payment.sum | number:2 }}</td>
                     </tr>
+                    <tr> 
+                      <td colspan="9"><ng_new_apayment> ng_new_apayment </ng_new_apayment></td>
+                    </tr>
+
                   </tbody>
                 </table> 
 

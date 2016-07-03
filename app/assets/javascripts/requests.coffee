@@ -2,8 +2,10 @@ angular
 	.module('payments')
 	.controller("PaymentsListController", [ '$scope', '$resource'
 	($scope, $resource)->
+
+#main menu functions			
 		$scope.activeMenu = 1;
-		
+
 		$scope.isActive = (current)->
 			current == $scope.activeMenu;
 		
@@ -11,21 +13,53 @@ angular
 			$scope.activeMenu = clicked;
 			$scope.isCollapsed = true;
 
+# calendar functions	  
+	  
+		$scope.inlineOptions = 
+	    showWeeks: true
 
-		RequestAll = $resource('/requests', { format: 'json' },
-		{ 
-			'query':  {method:'GET', isArray:true},
-			'save':   {method:'PUT'},
-			'create': {method:'POST'}
-		});
+	  $scope.dateOptions =
+	    startingDay: 1
 
-		RequestAll.query( (results) ->
-			$scope.rowCollection = results
-		);
+	  #$scope.date_from = new Date();
+	 	#$scope.date_to = new Date();
+	  $scope.date_from = '09.12.2015';
+	 	$scope.date_to = '11.12.2015';
+	  $scope.calendar1 =
+	  	opened: false
+	  $scope.calendar2 =
+	  	opened: false
 
-		get_payments = (request, typePayments) ->
+	  $scope.open_calendar1 = ()->
+	  	$scope.calendar1.opened = true;
+	  $scope.open_calendar2 = ()->
+	  	$scope.calendar2.opened = true;
+
+	  $scope.calendar_ok = (d1,d2)->
+	  	$scope.date_from = d1 if d1
+	  	$scope.date_to = d2 if d2
+	  	get_requests($scope.date_from, $scope.date_to)
+
+
+# requests and payments data management
+
+		get_requests = ( date_from, date_to )->
+			RequestAll = $resource('/requests', { date_from, date_to, format: 'json' },
+			{ 
+				'query':  {method:'GET', isArray:true},
+				'save':   {method:'PUT'},
+				'create': {method:'POST'}
+			});
+
+			RequestAll.query( (results) ->
+				$scope.rowCollection = results
+			);
+
+		get_requests($scope.date_from, $scope.date_to)
+
+		get_payments = (request, typePayments, date_from, date_to) ->
 			r_id = request.id
-			RequestOne = $resource('/requests/:r_id/:typePayments', { r_id, typePayments, format: 'json' },
+			RequestOne = $resource('/requests/:r_id/:typePayments', { r_id, typePayments, date_from, date_to, format: 'json' },
 			{ 
 				'query':  {method:'GET'},
 				'save':   {method:'PUT'},
@@ -38,32 +72,14 @@ angular
 			);
 
 
-		$scope.togglePayments = (request)->
+		$scope.togglePayments = (request, date_from, date_to)->
 			r_id = request.id
 			if request.is_bpayments_visible
-				get_payments(request, 'aPayments')
+				get_payments(request, 'aPayments', date_from, date_to)
 			if !request.is_bpayments_visible
-				get_payments(request, 'bPayments')
+				get_payments(request, 'bPayments', date_from, date_to)
 			request.is_bpayments_visible = !request.is_bpayments_visible;
-	  
-		$scope.inlineOptions = 
-	    showWeeks: true
-
-	  $scope.dateOptions =
-	    startingDay: 1
-
-	  $scope.date_from = new Date();
-	 	$scope.date_to = new Date();
-	  $scope.calendar1 =
-	  	opened: false
-	  $scope.calendar2 =
-	  	opened: false
-
-	  $scope.open_calendar1 = () ->
-	  	$scope.calendar1.opened = true;
-	  $scope.open_calendar2 = () ->
-	  	$scope.calendar2.opened = true;
-
+			request.is_visible = true
 
 	]);
 
