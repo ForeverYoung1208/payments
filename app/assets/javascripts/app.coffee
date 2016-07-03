@@ -3,14 +3,16 @@ angular.module('payments',[
 	'filters',
 	'smart-table',
 	'ngAnimate',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'templates'
 ]);
 
 #прикольно,ангуляр фильтр работает )))
 #выделим их в отдельный модуль
-angular.module('filters',[])
+#angular.module('filters',[])
+
 angular
-	.module('filters')
+	.module('filters',[])
 	.filter('rusBoolean',->
 		(input)->
 			if input

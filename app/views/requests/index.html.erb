@@ -79,7 +79,11 @@
     </div>
     <div class='row'>
       <div class='col-sm-offset-0 col-sm-12'>
-        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-big">
+        <table 
+          st-table="displayedCollection" 
+          st-safe-src="rowCollection" 
+          class="table table-big"
+        >
           <thead class="thead-inverse">
             <tr class="info">
               <th st-sort="date" >Номер</th>
@@ -174,7 +178,7 @@
                     </tr>
 
                     <tr> 
-                      <td colspan="9"><ng_new_bpayment> ng_new_bpayment </ng_new_bpayment></td>
+                                                          <td colspan="9"><ng_new_bpayment requests="rowCollection"></ng_new_bpayment></td>
                     </tr>
                   </tbody>
                 </table>
@@ -224,7 +228,7 @@
                       <td class="sum"               >{{a_payment.sum | number:2 }}</td>
                     </tr>
                     <tr> 
-                      <td colspan="9"><ng_new_apayment> ng_new_apayment </ng_new_apayment></td>
+                                                          <td colspan="9"><ng_new_apayment> ng_new_apayment </ng_new_apayment></td>
                     </tr>
 
                   </tbody>

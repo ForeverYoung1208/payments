@@ -25,4 +25,5 @@
 //= require app
 //= require requests
 //= require home
+//= require_tree ./templates 
 

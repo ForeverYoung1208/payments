@@ -40,7 +40,6 @@ angular
 	  	$scope.date_to = d2 if d2
 	  	get_requests($scope.date_from, $scope.date_to)
 
-
 # requests and payments data management
 
 		get_requests = ( date_from, date_to )->
@@ -71,7 +70,6 @@ angular
 				request.b_payments = results.b_payments if typePayments == 'bPayments'
 			);
 
-
 		$scope.togglePayments = (request, date_from, date_to)->
 			r_id = request.id
 			if request.is_bpayments_visible
@@ -80,8 +78,18 @@ angular
 				get_payments(request, 'bPayments', date_from, date_to)
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 			request.is_visible = true
+	])
 
-	]);
+
+	.directive('ngNewBpayment', ()->
+		{
+			restrict: 'E',
+			scope: {
+				requests: '='
+			},
+			templateUrl: 'ng_new_bpayment.html'
+		}
+	);
 
 
 
