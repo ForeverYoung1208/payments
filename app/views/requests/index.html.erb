@@ -111,7 +111,7 @@
                   ng-disabled="!row.b_payments.length>0" 
                   type="button" 
                   ng-click="row.is_visible = !row.is_visible" 
-                  class="btn btn-sm btn-warning"
+                  class="btn btn-sm btn-info"
                 >
                   <i class="glyphicon" ng-class=" {'glyphicon glyphicon-indent-left' : !row.is_visible, 'glyphicon glyphicon-triangle-left' : row.is_visible }">
                   </i>
@@ -151,17 +151,7 @@
                       <th st-sort="recipient" >Получатель</th>
                       <th st-sort="detail" >Назначение</th>
                       <th st-sort="note" >Примечание</th>
-
-                      <!-- th>
-                        <button 
-                          type="button" 
-                          class="btn btn-info"
-                          ng-click="togglePayments(row, date_from, date_to)"
-                        >
-                          К платежам <span class="glyphicon glyphicon-menu-right"></span> 
-                        </button>
-                      </th -->
-
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -174,11 +164,33 @@
                       <td class="sum"         >{{b_payment.sum | number:2}}</td>
                       <td class="recipient"   >{{b_payment.recipient}}</td>
                       <td class="detail"      >{{b_payment.detail}}</td>
-                      <td class="note"        >{{b_payment.note}}</td>
+                      <td contentEditable="true" ng-model="b_payment.b_acc_number" class="note">{{b_payment.note}}</td>
+                      <td>
+                         <button type="button" ng-click="remove_bpayment(b_payment)" class="btn btn-sm btn-danger">
+                            <i class="glyphicon glyphicon-remove-circle">
+                            </i>
+                         </button>
+                      </td>  
                     </tr>
 
                     <tr> 
-                                                          <td colspan="9"><ng_new_bpayment requests="rowCollection"></ng_new_bpayment></td>
+
+
+<!--============================================-->
+                    <td colspan="9">
+                      <button 
+                        type="button" 
+                        class="btn btn-warning"
+                        ng-click="addNewBpayment(row)"
+                      >
+                        <span class="glyphicon glyphicon-plus"></span> 
+                      </button>
+
+                      <ng_new_bpayment requests="rowCollection"></ng_new_bpayment>
+                    </td>
+
+
+
                     </tr>
                   </tbody>
                 </table>
@@ -190,16 +202,6 @@
                 > 
                   <thead>
                     <tr class="my-a_payments">
-                      <!-- th>
-                        <button 
-                          type="button" 
-                          class="btn btn-info"
-                          ng-click="togglePayments(row, date_from, date_to)"
-                        >
-                          К статьям <span class="glyphicon glyphicon-menu-left"></span> 
-                        </button>
-                      </th -->
-
                       <th st-sort="id">№</th>
                       <th st-sort="payer">Плательщик</th>
                       <th st-sort="payer_account">Счет плат.</th>
@@ -228,7 +230,8 @@
                       <td class="sum"               >{{a_payment.sum | number:2 }}</td>
                     </tr>
                     <tr> 
-                                                          <td colspan="9"><ng_new_apayment> ng_new_apayment </ng_new_apayment></td>
+<!--============================================-->
+                      <td colspan="9"><ng_new_apayment> ng_new_apayment </ng_new_apayment></td>
                     </tr>
 
                   </tbody>
