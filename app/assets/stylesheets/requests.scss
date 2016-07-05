@@ -73,6 +73,11 @@
 	.label_calendar{
 		padding: 10px 6px 0px 0px;
 	}
-
 };
 
+.no_border{
+  border: none !important;
+  resize: none !important;
+  outline: none !important;
+ 	box-shadow: none !important;
+}

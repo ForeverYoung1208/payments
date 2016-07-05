@@ -81,7 +81,7 @@ angular
 	])
 
 
-	.directive('ngNewBpayment', ()->
+	.directive('mynewbpayment', ()->
 		{
 			restrict: 'E',
 			scope: {
@@ -89,7 +89,48 @@ angular
 			},
 			templateUrl: 'ng_new_bpayment.html'
 		}
-	);
+	)
+
+	.directive 'myremoveborder', ->
+		{
+			link: (scope, elm, attrs, ctrl) ->
+				elm.bind 'blur', ->
+					elm.addClass 'no_border'
+				elm.bind 'focus', ->
+					elm.removeClass 'no_border'
+		}
+
+
+# Интересная штука редактировать нередактируемые тэги, например, <div>
+	# .directive 'contenteditable', ->
+ #  {
+ #    require: 'ngModel'
+ #    link: (scope, elm, attrs, ctrl) ->
+ #      # view -> model
+ #      elm.bind 'blur', ->
+ #        scope.$apply ->
+ #          ctrl.$setViewValue elm.html()
+ #        elm.addClass('no_border')
+
+ #      # model -> view
+ #      ctrl.render = (value) ->
+ #        elm.html value
+ #        return
+
+ #      elm.bind 'keydown', (event) ->
+ #        console.log 'keydown ' + event.which
+ #        esc = event.which == 27
+ #        el = event.target
+ #        if esc
+ #          console.log 'esc'
+ #          ctrl.$setViewValue elm.html()
+ #          el.blur()
+ #          event.preventDefault()
+ #        return
+
+ #      elm.bind 'focus', ->
+ #      	elm.removeClass('no_border')
+ #  }
 
 
 

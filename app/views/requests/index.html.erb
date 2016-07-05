@@ -156,21 +156,31 @@
                   </thead>
                   <tbody>
                     <tr class="my-b_payments" ng-repeat="b_payment in displayed_bp_collection">
-                      <td class="id"          >{{b_payment.id}}</td>                   
-                      <td class="b_acc_number">{{b_payment.b_acc_number}}</td>                   
-                      <td class="b_acc_name"  >{{b_payment.b_acc_name}}</td>                   
-                      <td class="sum_allowed" >{{b_payment.sum_allowed | number:2}}</td>
-                      <td class="sum_rest"    >{{b_payment.sum_rest | number:2}}</td>
-                      <td class="sum"         >{{b_payment.sum | number:2}}</td>
-                      <td class="recipient"   >{{b_payment.recipient}}</td>
-                      <td class="detail"      >{{b_payment.detail}}</td>
-                      <td contentEditable="true" ng-model="b_payment.b_acc_number" class="note">{{b_payment.note}}</td>
-                      <td>
-                         <button type="button" ng-click="remove_bpayment(b_payment)" class="btn btn-sm btn-danger">
-                            <i class="glyphicon glyphicon-remove-circle">
-                            </i>
-                         </button>
-                      </td>  
+
+<td class="id"          >
+  <div>{{b_payment.id}}</div></td>                   
+<td class="b_acc_number">
+  <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.b_acc_number"></input></td>                   
+<td class="b_acc_name"  >
+  <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.b_acc_name"></textarea></td>                   
+<td class="sum_allowed" >
+  <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.sum_allowed"></input></td>
+<td class="sum_rest"    >
+  <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.sum_rest"></input></td>
+<td class="sum"         >
+  <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.sum"></input></td>
+<td class="recipient"   >
+  <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.recipient"></textarea></td>
+<td class="detail"      >
+  <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.detail"></textarea></td>
+<td class="note"        >
+  <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.note" ></textarea></td>
+<td>
+   <button type="button" ng-click="remove_bpayment(b_payment)" class="btn btn-sm btn-danger">
+      <i class="glyphicon glyphicon-remove-circle">
+      </i>
+   </button>
+</td>  
                     </tr>
 
                     <tr> 
@@ -186,7 +196,7 @@
                         <span class="glyphicon glyphicon-plus"></span> 
                       </button>
 
-                      <ng_new_bpayment requests="rowCollection"></ng_new_bpayment>
+                      <myNewBpayment requests="rowCollection"></myNewBpayment>
                     </td>
 
 
