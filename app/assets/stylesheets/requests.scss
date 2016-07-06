@@ -17,15 +17,19 @@
 .my-b_payments {
 	font-style: italic;
 	.id { width:2% };
-	.b_acc_number { width:3% };
+	.b_acc_number { width:4% };
 	.b_acc_name { width:13% };
-	.sum_allowed { width:5% };
-	.sum_rest { width:5% };
-	.sum { width:5% };
-	.recipient { width:23% };
+	.sum_allowed { width:6% };
+	.sum_rest { width:6% };
+	.sum { width:6% };
+	.recipient { width:19% };
 	.detail { width:23% };
 	.note { width:23% };
 	.btn {};
+
+	.form-control{
+		padding: 2px;
+	}
 }
 
 .my-a_payments {
@@ -42,6 +46,10 @@
 	.recipient_mfo { width:10% };
 	.recipient_egrpou { width:10% };
 	.sum { width:5% };
+
+	.form-control{
+		padding: 2px;
+	}
 }
 
 

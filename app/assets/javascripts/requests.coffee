@@ -78,16 +78,30 @@ angular
 				get_payments(request, 'bPayments', date_from, date_to)
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 			request.is_visible = true
+
+		$scope.addBpayment = (request)->
+			request.b_payments.push({
+				'b_acc_number': '0.0.',
+				'b_acc_name': 'Введите статью',
+				'sum_allowed': '0.00',
+				'sum_rest': '0.00',
+				'sum': '0.00',
+				'recipient': 'Введите получателя',
+				'detail': 'Назначение платежа',
+				'note': '',
+				'is_new': true
+			})
+
+		$scope.saveBpayment = (b_payment, request)->
+			alert('saveBpayment '+b_payment+request)
+
+
 	])
 
-
-	.directive('mynewbpayment', ()->
+	.directive('bpaymentshere', ()->
 		{
 			restrict: 'E',
-			scope: {
-				requests: '='
-			},
-			templateUrl: 'ng_new_bpayment.html'
+			templateUrl: 'bpayments_tplt.html'
 		}
 	)
 
