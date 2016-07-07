@@ -138,52 +138,12 @@
 
 
 
-                <bpaymentshere row="row"></bpaymentshere>
+                <bpaymentshere></bpaymentshere>
                 
 
+                <apaymentshere></apaymentshere>
 
 
-                <table 
-                  class="table table-sm  animate-show_apayments" 
-                  ng-show="row.is_bpayments_visible!=true"
-                  st-table="displayed_ap_collection" st-safe-src="row.a_payments"                   
-                > 
-                  <thead>
-                    <tr class="my-a_payments">
-                      <th st-sort="id">№</th>
-                      <th st-sort="payer">Плательщик</th>
-                      <th st-sort="payer_account">Счет плат.</th>
-                      <th st-sort="payer_mfo">МФО плат.</th>
-                      <th st-sort="recipient">Получатель</th>
-                      <th st-sort="detail">Назначение</th>
-                      <th st-sort="recipient_account">Счет получ.</th>
-                      <th st-sort="recipient_bank">Банк получ.</th>
-                      <th st-sort="recipient_mfo">МФО получ.</th>
-                      <th st-sort="recipient_egrpou">ЕГРПОУ получ.</th>
-                      <th st-sort="sum">Сумма</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="my-a_payments" ng-repeat="a_payment in displayed_ap_collection">
-                      <td class="id"                >{{a_payment.id}}</td>                   
-                      <td class="payer"             >{{a_payment.payer}}</td>                   
-                      <td class="payer_account"     >{{a_payment.payer_account}}</td>                   
-                      <td class="payer_mfo"         >{{a_payment.payer_mfo}}</td>
-                      <td class="recipient"         >{{a_payment.recipient}}</td>
-                      <td class="detail"            >{{a_payment.detail}}</td>
-                      <td class="recipient_account" >{{a_payment.recipient_account}}</td>
-                      <td class="recipient_bank"    >{{a_payment.recipient_bank}}</td>
-                      <td class="recipient_mfo"     >{{a_payment.recipient_mfo}}</td>
-                      <td class="recipient_egrpou"  >{{a_payment.recipient_egrpou}}</td>
-                      <td class="sum"               >{{a_payment.sum | number:2 }}</td>
-                    </tr>
-                    <tr> 
-<!--============================================-->
-                      <td colspan="9"><ng_new_apayment> ng_new_apayment </ng_new_apayment></td>
-                    </tr>
-
-                  </tbody>
-                </table> 
 
               </td>
             </tr>

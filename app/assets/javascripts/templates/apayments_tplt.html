@@ -1,0 +1,71 @@
+<table 
+  class="table table-sm  animate-show_apayments" 
+  ng-show="row.is_bpayments_visible!=true"
+  st-table="displayed_ap_collection" st-safe-src="row.a_payments"                   
+> 
+  <thead>
+    <tr class="my-a_payments">
+      <th st-sort="id">№</th>
+      <th st-sort="payer">Плательщик</th>
+      <th st-sort="payer_account">Счет плат.</th>
+      <th st-sort="payer_mfo">МФО плат.</th>
+      <th st-sort="recipient">Получатель</th>
+      <th st-sort="detail">Назначение</th>
+      <th st-sort="recipient_account">Счет получ.</th>
+      <th st-sort="recipient_bank">Банк получ.</th>
+      <th st-sort="recipient_mfo">МФО получ.</th>
+      <th st-sort="recipient_egrpou">ЕГРПОУ получ.</th>
+      <th st-sort="sum">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="my-a_payments" ng-repeat="a_payment in displayed_ap_collection">
+      <td class="id">{{a_payment.id}}
+      </td>
+                   
+      <td class="payer">   
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.payer"></input></td>
+                   
+      <td class="payer_account">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.payer_account"></input></td>
+                   
+      <td class="payer_mfo">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.payer_mfo"></input></td>                   
+
+      <td class="recipient">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.recipient"></input></td>
+
+      <td class="detail">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.detail"></input></td>
+
+      <td class="recipient_account">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.recipient_account"></input></td>
+
+      <td class="recipient_bank">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.recipient_bank"></input></td>
+
+      <td class="recipient_mfo">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.recipient_mfo"></input></td>
+
+      <td class="recipient_egrpou">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.recipient_egrpou"></input></td>
+
+      <td class="sum">
+      <input class= "form-control no_border" myEditableCell ng-model="a_payment.sum"></input></td>
+
+    </tr>
+    <tr> 
+
+      <td colspan="9">
+        <button 
+          type="button" 
+          class="btn btn-warning"
+          ng-click="addApayment(row)"
+        >
+          <span class="glyphicon glyphicon-plus"></span> 
+        </button>
+      </td>
+
+    </tr>
+  </tbody>
+</table> 

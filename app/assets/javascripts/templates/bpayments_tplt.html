@@ -21,21 +21,21 @@
       <td class="id"          >
         <div>{{b_payment.id}}</div></td>                   
       <td class="b_acc_number">
-        <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.b_acc_number"></input></td>                   
+        <input class= "form-control no_border" myEditableCell ng-model="b_payment.b_acc_number"></input></td>                   
       <td class="b_acc_name"  >
-        <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.b_acc_name"></textarea></td>                   
+        <textarea class= "form-control no_border" myEditableCell ng-model="b_payment.b_acc_name"></textarea></td>                   
       <td class="sum_allowed" >
-        <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.sum_allowed"></input></td>
+        <input class= "form-control no_border" myEditableCell ng-model="b_payment.sum_allowed"></input></td>
       <td class="sum_rest"    >
-        <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.sum_rest"></input></td>
+        <input class= "form-control no_border" myEditableCell ng-model="b_payment.sum_rest"></input></td>
       <td class="sum"         >
-        <input class= "form-control no_border" myRemoveBorder ng-model="b_payment.sum"></input></td>
+        <input class= "form-control no_border" myEditableCell ng-model="b_payment.sum"></input></td>
       <td class="recipient"   >
-        <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.recipient"></textarea></td>
+        <textarea class= "form-control no_border" myEditableCell ng-model="b_payment.recipient"></textarea></td>
       <td class="detail"      >
-        <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.detail"></textarea></td>
+        <textarea class= "form-control no_border" myEditableCell ng-model="b_payment.detail"></textarea></td>
       <td class="note"        >
-        <textarea class= "form-control no_border" myRemoveBorder ng-model="b_payment.note" ></textarea></td>
+        <textarea class= "form-control no_border" myEditableCell ng-model="b_payment.note" ></textarea></td>
       <td>
          <button type="button" ng-click="remove_bpayment(b_payment)" class="btn btn-sm btn-danger">
             <i class="glyphicon glyphicon-remove-circle">

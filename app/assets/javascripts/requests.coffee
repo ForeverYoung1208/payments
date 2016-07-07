@@ -92,6 +92,10 @@ angular
 				'is_new': true
 			})
 
+		$scope.addApayment = (request)->
+			request.a_payments.push({
+			})	
+
 		$scope.saveBpayment = (b_payment, request)->
 			alert('saveBpayment '+b_payment+request)
 
@@ -105,13 +109,23 @@ angular
 		}
 	)
 
-	.directive 'myremoveborder', ->
+	.directive('apaymentshere', ()->
+		{
+			restrict: 'E',
+			templateUrl: 'apayments_tplt.html'
+		}
+	)
+
+	.directive 'myeditablecell', ->
 		{
 			link: (scope, elm, attrs, ctrl) ->
 				elm.bind 'blur', ->
 					elm.addClass 'no_border'
 				elm.bind 'focus', ->
 					elm.removeClass 'no_border'
+				elm.bind 'keydown', (event) ->
+					b_payment.is_edited = true;
+					alert(b_payment.id + ' edited')
 		}
 
 
@@ -145,12 +159,6 @@ angular
  #      elm.bind 'focus', ->
  #      	elm.removeClass('no_border')
  #  }
-
-
-
-
-
-
 
 
 #		$scope.clickExpandBpayments = (to_show) ->
