@@ -36,11 +36,18 @@
         <textarea class= "form-control no_border" myEditableCell ng-model="b_payment.detail"></textarea></td>
       <td class="note"        >
         <textarea class= "form-control no_border" myEditableCell ng-model="b_payment.note" ></textarea></td>
-      <td>
-         <button type="button" ng-click="remove_bpayment(b_payment)" class="btn btn-sm btn-danger">
-            <i class="glyphicon glyphicon-remove-circle">
+      <td class="btns">
+
+         <button type="button" ng-if="b_payment.is_changed" ng-click="saveBpayment (b_payment, row)" class="btn btn-success">
+            <i class="glyphicon glyphicon-save">
             </i>
          </button>
+
+         <button type="button" ng-click="removeBpayment(b_payment, row)" class="btn btn-sm btn-danger" >
+            <i class="glyphicon glyphicon-remove">
+            </i>
+         </button>
+
       </td>  
     </tr>
 

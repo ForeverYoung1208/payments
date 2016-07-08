@@ -22,10 +22,19 @@
 	.sum_allowed { width:6% };
 	.sum_rest { width:6% };
 	.sum { width:6% };
-	.recipient { width:19% };
-	.detail { width:23% };
-	.note { width:23% };
-	.btn {};
+	.recipient { width:16% };
+	.detail { width:20% };
+	.note { width:20% };
+	.btns {
+		.btn-success{
+			float:left;
+		}
+		.btn-danger{
+			float:right;
+		}
+
+
+	};
 
 	.form-control{
 		padding: 2px;

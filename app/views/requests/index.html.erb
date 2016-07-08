@@ -108,7 +108,7 @@
               <td>{{row.updated_at}}</td>
               <td>  
                 <button 
-                  ng-disabled="!row.b_payments.length>0" 
+                  ng-if="row.b_payments.length>0"
                   type="button" 
                   ng-click="row.is_visible = !row.is_visible" 
                   class="btn btn-sm btn-info"
@@ -116,11 +116,22 @@
                   <i class="glyphicon" ng-class=" {'glyphicon glyphicon-indent-left' : !row.is_visible, 'glyphicon glyphicon-triangle-left' : row.is_visible }">
                   </i>
                 </button>
+
+                <button 
+                  type="button" 
+                  class="btn btn-warning"
+                  ng-click="addBpayment(row)"
+                  ng-if="!row.b_payments.length>0"
+                >
+                  <span class="glyphicon glyphicon-plus"></span> 
+                </button>
+
+
+
                 <button 
                   type="button" 
                   class="btn btn-info"
                   ng-click="togglePayments(row, date_from, date_to)"
-                  ng-disabled="!row.b_payments.length>0" 
 
                 >
                   <span ng-show="row.is_bpayments_visible!=true" class="glyphicon glyphicon-menu-left"></span>
@@ -149,6 +160,18 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class='col-sm-offset-0 col-sm-12 text-center'>
+        <button 
+          type="button" 
+          class="btn btn-warning"
+          ng-click="addRequest(rowCollection)"
+        >
+          <span class="glyphicon glyphicon-plus"></span> 
+        </button>
       </div>
     </div>
    

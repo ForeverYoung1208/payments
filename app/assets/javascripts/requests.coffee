@@ -80,6 +80,7 @@ angular
 			request.is_visible = true
 
 		$scope.addBpayment = (request)->
+			request.is_visible = true
 			request.b_payments.push({
 				'b_acc_number': '0.0.',
 				'b_acc_name': 'Введите статью',
@@ -89,15 +90,32 @@ angular
 				'recipient': 'Введите получателя',
 				'detail': 'Назначение платежа',
 				'note': '',
-				'is_new': true
+				'is_new': true,
+				'is_changed': true
+			})
+
+		$scope.addRequest = (requests)->
+			requests.push({
+				'date': $scope.date_to,
+				'project_name': 'введите проект',
+				'sum': '0.00',
+				'is_approved': false,
+				'b_payments': [],
+				'a_payments': [],
+				'is_visible': false,
+				'is_bpayments_visible': true
 			})
 
 		$scope.addApayment = (request)->
 			request.a_payments.push({
 			})	
 
+		$scope.removeBpayment = (b_payment, request) ->
+			alert('removeBpayment '+b_payment.id+request.id)
+
+
 		$scope.saveBpayment = (b_payment, request)->
-			alert('saveBpayment '+b_payment+request)
+			alert('saveBpayment '+b_payment.id+request.id)
 
 
 	])
@@ -124,8 +142,7 @@ angular
 				elm.bind 'focus', ->
 					elm.removeClass 'no_border'
 				elm.bind 'keydown', (event) ->
-					b_payment.is_edited = true;
-					alert(b_payment.id + ' edited')
+					scope.b_payment.is_changed = true;
 		}
 
 
