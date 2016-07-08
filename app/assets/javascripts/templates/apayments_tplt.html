@@ -52,6 +52,17 @@
 
       <td class="sum">
       <input class= "form-control no_border" myEditableCell ng-model="a_payment.sum"></input></td>
+      <td class="btns">
+        <button type="button" ng-if="a_payment.is_changed" ng-click="saveApayment (a_payment, row)" class="btn btn-success">
+          <i class="glyphicon glyphicon-save">
+          </i>
+        </button>
+
+        <button type="button" ng-click="removeApayment(b_payment, row)" class="btn btn-sm btn-danger" >
+          <i class="glyphicon glyphicon-remove">
+          </i>
+        </button>
+      </td>  
 
     </tr>
     <tr> 

@@ -49,12 +49,21 @@
 	.payer_account { width:10% };
 	.payer_mfo { width:5% };
 	.recipient { width:10% };
-	.detail { width:10% };
+	.detail { width:15% };
 	.recipient_account { width:10% };
 	.recipient_bank { width:10% };
-	.recipient_mfo { width:10% };
+	.recipient_mfo { width:5% };
 	.recipient_egrpou { width:10% };
 	.sum { width:5% };
+	.btns {
+		.btn-success{
+			float:left;
+		}
+		.btn-danger{
+			float:right;
+		}
+	}
+
 
 	.form-control{
 		padding: 2px;
