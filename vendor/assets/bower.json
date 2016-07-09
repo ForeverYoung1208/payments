@@ -8,6 +8,7 @@
     "angular-flash": "latest",
     "angular-smart-table": "latest",
     "angular-animate": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "bootbox": "latest"
   }
 }

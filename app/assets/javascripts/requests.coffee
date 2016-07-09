@@ -71,11 +71,11 @@ angular
 			);
 
 		$scope.togglePayments = (request, date_from, date_to)->
-			r_id = request.id
-			if request.is_bpayments_visible
-				get_payments(request, 'aPayments', date_from, date_to)
-			if !request.is_bpayments_visible
-				get_payments(request, 'bPayments', date_from, date_to)
+			# r_id = request.id
+			# if request.is_bpayments_visible
+			# 	get_payments(request, 'aPayments', date_from, date_to)
+			# if !request.is_bpayments_visible
+			# 	get_payments(request, 'bPayments', date_from, date_to)
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 			request.is_visible = true
 
@@ -123,8 +123,10 @@ angular
 			})	
 
 		$scope.removeBpayment = (b_payment, request) ->
-			alert('removeBpayment '+b_payment.id+request.id)
-
+			bootbox.confirm('removeBpayment '+b_payment.id+request.id+' ?' , (result) ->
+				alert("Confirm result: "+result)				
+			)
+			return true
 
 		$scope.saveBpayment = (b_payment, request)->
 			alert('saveBpayment '+b_payment.id+request.id)

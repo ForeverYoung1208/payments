@@ -14,6 +14,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sass-official/assets/javascripts/bootstrap.min
 //= require angular/angular.min
 //= require angular-route/angular-route.min
 //= require angular-resource/angular-resource
@@ -22,6 +23,7 @@
 //= require angular-smart-table/dist/smart-table.min.js
 //= require angular-animate/angular-animate.min
 //= require angular-bootstrap/ui-bootstrap-tpls.min
+//= require bootbox/bootbox
 //= require app
 //= require requests
 //= require home
