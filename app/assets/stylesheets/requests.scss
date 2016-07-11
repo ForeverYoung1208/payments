@@ -78,6 +78,9 @@
 .request_row{
 	td{
 	  background-color: #E7E7E7 !important;
+	  .btn-danger{
+			float:right;
+	  }
 	}
 }
 
@@ -102,6 +105,7 @@
 };
 
 .no_border{
+	background: inherit !important;
   border: none !important;
   resize: none !important;
   outline: none !important;

@@ -100,15 +100,19 @@
           <tbody>
             <tr class="request_row" ng-repeat-start="row in displayedCollection" >
               <td>{{row.id}}</td>
-              <td>{{row.date}}</td>
-              <td>{{row.project_name}}</td>
+              <td>
+                <input class= "form-control no_border" myEditableCell="row" ng-model="row.date"></input>
+              </td>
+              <td>
+                <input class= "form-control no_border" myEditableCell="row" ng-model="row.project_name"></input>
+              </td>
               <td>{{row.sum | number:2}}</td>
               <td>{{row.is_approved|rusBoolean}}</td>
               <td>{{row.created_at}}</td>
               <td>{{row.updated_at}}</td>
               <td>  
                 <button 
-                  ng-if="row.b_payments.length>0"
+                  ng-if="(row.b_payments.length>0)&&!(row.is_new||row.is_changed)"
                   type="button" 
                   ng-click="row.is_visible = !row.is_visible" 
                   class="btn btn-sm btn-info"
@@ -121,23 +125,34 @@
                   type="button" 
                   class="btn btn-warning"
                   ng-click="addBpayment(row)"
-                  ng-if="!row.b_payments.length>0"
+                  ng-if="(!row.b_payments.length>0)&&!(row.is_new||row.is_changed)"
                 >
                   <span class="glyphicon glyphicon-plus"></span> 
                 </button>
 
-
+                <button 
+                  type="button" 
+                  class="btn btn-success"
+                  ng-click="saveRequest(row)"
+                  ng-if="(row.is_new||row.is_changed)"
+                >
+                  <span class="glyphicon glyphicon-save"></span> 
+                </button>
 
                 <button 
                   type="button" 
                   class="btn btn-info"
                   ng-click="togglePayments(row, date_from, date_to)"
-
                 >
                   <span ng-show="row.is_bpayments_visible!=true" class="glyphicon glyphicon-menu-left"></span>
                   <span ng-show="row.is_bpayments_visible!=true"> К статьям</span>
                   <span ng-show="row.is_bpayments_visible==true"> К платежам</span> 
                   <span ng-show="row.is_bpayments_visible==true" class="glyphicon glyphicon-menu-right"></span>                   
+                </button>
+
+                <button type="button" ng-click="removeRequest(row)" class="btn btn-sm btn-danger" >
+                  <i class="glyphicon glyphicon-remove">
+                  </i>
                 </button>
 
               </td>

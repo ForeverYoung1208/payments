@@ -103,8 +103,16 @@ angular
 				'b_payments': [],
 				'a_payments': [],
 				'is_visible': false,
-				'is_bpayments_visible': true
+				'is_bpayments_visible': true,
+				'is_new': true,
+				'is_changed': true
 			})
+
+		$scope.saveRequest = (request)->
+			alert('saveRequest '+request.id)
+
+		$scope.removeRequest = (request)->
+			alert('removeRequest '+request.id)
 
 		$scope.addApayment = (request)->
 			request.a_payments.push({
@@ -132,6 +140,8 @@ angular
 			alert('saveBpayment '+b_payment.id+request.id)
 
 
+
+
 	])
 
 	.directive('bpaymentshere', ()->
@@ -156,10 +166,8 @@ angular
 				elm.bind 'focus', ->
 					elm.removeClass 'no_border'
 				elm.bind 'keydown', (event) ->
-					if scope.row.is_bpayments_visible
-						scope.b_payment.is_changed = true 
-					else
-						scope.a_payment.is_changed = true 
+					scope.$watch(attrs.myeditablecell, (rowchanged)->
+						rowchanged.is_changed = true )
 		}
 
 
