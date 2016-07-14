@@ -35,10 +35,13 @@ angular
 	  $scope.open_calendar2 = ()->
 	  	$scope.calendar2.opened = true;
 
-	  $scope.calendar_ok = (d1,d2)->
-	  	$scope.date_from = d1 if d1
-	  	$scope.date_to = d2 if d2
-	  	get_requests($scope.date_from, $scope.date_to)
+		$scope.calendar_ok = (d1,d2)->
+			bootbox.confirm('Изменить интервал? (все несохраненные изменнеия будут потяряны!)' , (result) ->
+				if result == true
+					$scope.date_from = d1 if d1
+					$scope.date_to = d2 if d2
+					get_requests($scope.date_from, $scope.date_to)
+			)
 
 # requests and payments data management
 
@@ -94,25 +97,14 @@ angular
 				'is_changed': true
 			})
 
-		$scope.addRequest = (requests)->
-			requests.push({
-				'date': $scope.date_to,
-				'project_name': 'введите проект',
-				'sum': '0.00',
-				'is_approved': false,
-				'b_payments': [],
-				'a_payments': [],
-				'is_visible': false,
-				'is_bpayments_visible': true,
-				'is_new': true,
-				'is_changed': true
-			})
+		$scope.removeBpayment = (b_payment, request) ->
+			b_payment.is_deleted = !b_payment.is_deleted
+			b_payment.is_changed = true
 
-		$scope.saveRequest = (request)->
-			alert('saveRequest '+request.id)
+		$scope.saveBpayment = (b_payment, request)->
+			b_payment.is_changed = false
+			alert('saved Bpayment '+b_payment.id+request.id)
 
-		$scope.removeRequest = (request)->
-			request.is_deleted = !request.is_deleted
 
 
 		$scope.addApayment = (request)->
@@ -131,15 +123,37 @@ angular
 				'is_changed': true
 			})	
 
-		$scope.removeBpayment = (b_payment, request) ->
-			bootbox.confirm('removeBpayment '+b_payment.id+request.id+' ?' , (result) ->
-				alert("Confirm result: "+result)				
-			)
-			return true
+		$scope.removeApayment = (a_payment, request) ->
+			b_payment.is_deleted = !b_payment.is_deleted
+			b_payment.is_changed = true
 
-		$scope.saveBpayment = (b_payment, request)->
-			alert('saveBpayment '+b_payment.id+request.id)
+		$scope.saveApayment = (a_payment, request)->
+			a_payment.is_changed = false
+			alert('saved Apayment '+b_payment.id+request.id)
 
+
+
+		$scope.addRequest = (requests)->
+			requests.push({
+				'date': $scope.date_to,
+				'project_name': 'введите проект',
+				'sum': '0.00',
+				'is_approved': false,
+				'b_payments': [],
+				'a_payments': [],
+				'is_visible': false,
+				'is_bpayments_visible': true,
+				'is_new': true,
+				'is_changed': true
+			})
+
+		$scope.saveRequest = (request)->
+			request.is_changed = false
+			alert('saved Request '+request.id)
+
+		$scope.removeRequest = (request)->
+			request.is_deleted = !request.is_deleted
+			request.is_changed = true
 
 
 
@@ -173,7 +187,6 @@ angular
 					scope.myeditablecell.is_changed = true
 
 				scope.$watch('myeditablecell.is_deleted', (d)->
-					console.log d
 					elm.addClass 'deleted' if d
 					elm.removeClass 'deleted' if !d
 				)
