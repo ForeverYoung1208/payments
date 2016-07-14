@@ -112,7 +112,8 @@ angular
 			alert('saveRequest '+request.id)
 
 		$scope.removeRequest = (request)->
-			alert('removeRequest '+request.id)
+			request.is_deleted = !request.is_deleted
+
 
 		$scope.addApayment = (request)->
 			request.a_payments.push({
@@ -160,14 +161,24 @@ angular
 
 	.directive 'myeditablecell', ->
 		{
+			scope: {
+				myeditablecell: "="
+				};
 			link: (scope, elm, attrs, ctrl) ->
 				elm.bind 'blur', ->
 					elm.addClass 'no_border'
 				elm.bind 'focus', ->
 					elm.removeClass 'no_border'
 				elm.bind 'keydown', (event) ->
-					scope.$watch(attrs.myeditablecell, (rowchanged)->
-						rowchanged.is_changed = true )
+					scope.myeditablecell.is_changed = true
+
+				scope.$watch('myeditablecell.is_deleted', (d)->
+					console.log d
+					elm.addClass 'deleted' if d
+					elm.removeClass 'deleted' if !d
+				)
+				
+
 		}
 
 

@@ -98,7 +98,7 @@
           </thead>
 
           <tbody>
-            <tr class="request_row" ng-repeat-start="row in displayedCollection" >
+            <tr class="request_row" ng-class="{'deleted': row.is_deleted}" ng-repeat-start="row in displayedCollection" >
               <td>{{row.id}}</td>
               <td>
                 <input class= "form-control no_border" myEditableCell="row" ng-model="row.date"></input>
