@@ -7,10 +7,13 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources 'requests', only: [:index, :show, :new, :create, :aPayments] do 
-    get 'aPayments', on: :member
-    get 'bPayments', on: :member
+  resources 'requests', only: [:index, :show, :new, :create, :apayments] do 
+    get 'apayments', on: :member
+    get 'bpayments', on: :member
   end
+
+  resources :apayments
+  resources :bpayments
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

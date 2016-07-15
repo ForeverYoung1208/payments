@@ -31,7 +31,7 @@ class RequestsController < ApplicationController
 
 	# GET /requests/1/aPayments
 	# GET /requests/1/aPayments.json
-	def aPayments
+	def apayments
 		@request = Request.find(params[:id])
 		respond_to do |format|
 			format.html # show.html.erb
@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
 		end
 	end	
 
-	def bPayments
+	def bpayments
 		@request = Request.find(params[:id])
 		respond_to do |format|
 			format.html # show.html.erb

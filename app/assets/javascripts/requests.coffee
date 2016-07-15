@@ -59,26 +59,36 @@ angular
 
 		get_requests($scope.date_from, $scope.date_to)
 
-		get_payments = (request, typePayments, date_from, date_to) ->
+		get_payments = (request, typepayments, date_from, date_to) ->
 			r_id = request.id
-			RequestOne = $resource('/requests/:r_id/:typePayments', { r_id, typePayments, date_from, date_to, format: 'json' },
+			GetPayments = $resource('/requests/:r_id/:typepayments', { r_id, typepayments, date_from, date_to, format: 'json' },
 			{ 
 				'query':  {method:'GET'},
 				'save':   {method:'PUT'},
 				'create': {method:'POST'}
 			});
-
-			RequestOne.query( (results) ->
-				request.a_payments = results.a_payments if typePayments == 'aPayments'
-				request.b_payments = results.b_payments if typePayments == 'bPayments'
+			GetPayments.query( (results) ->
+				request.a_payments = results.a_payments if typepayments == 'apayments'
+				request.b_payments = results.b_payments if typepayments == 'bpayments'
 			);
+
+		save_payment = (payment, typepayments) ->
+			id = payment.id
+			Savepayment = $resource('/:typepayments/:id', { typepayments, id, format: 'json' },
+			{ 
+				'query':  {method:'GET'},
+				'save':   {method:'PUT'},
+				'create': {method:'POST'}
+			});
+			Savepayment.save( payment )
+
 
 		$scope.togglePayments = (request, date_from, date_to)->
 			# r_id = request.id
 			# if request.is_bpayments_visible
-			# 	get_payments(request, 'aPayments', date_from, date_to)
+			# 	get_payments(request, 'apayments', date_from, date_to)
 			# if !request.is_bpayments_visible
-			# 	get_payments(request, 'bPayments', date_from, date_to)
+			# 	get_payments(request, 'bpayments', date_from, date_to)
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 			request.is_visible = true
 
@@ -128,8 +138,9 @@ angular
 			b_payment.is_changed = true
 
 		$scope.saveApayment = (a_payment, request)->
+			save_payment(a_payment, 'apayments')
 			a_payment.is_changed = false
-			alert('saved Apayment '+b_payment.id+request.id)
+			alert('saved Apayment '+a_payment.id+request.id)
 
 
 
@@ -154,9 +165,6 @@ angular
 		$scope.removeRequest = (request)->
 			request.is_deleted = !request.is_deleted
 			request.is_changed = true
-
-
-
 	])
 
 	.directive('bpaymentshere', ()->
