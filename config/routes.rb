@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'apayments/update'
+
   devise_for :users
   #get 'requests/index'
 

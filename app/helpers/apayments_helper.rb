@@ -1,0 +1,2 @@
+module ApaymentsHelper
+end

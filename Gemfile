@@ -37,6 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bower-rails'
 gem 'angular-rails-templates'
 gem 'devise'
+gem 'angular_rails_csrf'
 
 
 ###- gem 'sprockets', '~> 2.0'
