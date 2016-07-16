@@ -11,7 +11,7 @@ class ApaymentsController < ApplicationController
   end
 
   def apayment_params
-    params.permit(:detail, :id, :is_changed, :payer, :payer_account, :payer_mfo, :recipient, :recipient_account, :recipient_bank, :recipient_egrpou, :recipient_mfo, :sum)
+    params.require(:apayment).permit(:detail, :id, :is_changed, :payer, :payer_account, :payer_mfo, :recipient, :recipient_account, :recipient_bank, :recipient_egrpou, :recipient_mfo, :sum)
   end
   
 end
