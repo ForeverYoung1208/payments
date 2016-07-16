@@ -1,8 +1,8 @@
 class ApaymentsController < ApplicationController
   def update
-		@apayment = APayment.find(params[:id])
+		@apayment = APayment.find(params[:apayment][:id])
 		respond_to do |format|
-			if @apayment.update_attributes( params )
+			if @apayment.update_attributes( params[:apayment] )
 				format.json { head :no_content }
 			else
 				format.json { render json: @apayment.errors, status: :unprocessable_entity }

@@ -81,6 +81,7 @@ angular
 				'create': {method:'POST'}
 			});
 			Savepayment.save( payment )
+			return true
 
 
 		$scope.togglePayments = (request, date_from, date_to)->
