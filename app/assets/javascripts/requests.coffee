@@ -72,14 +72,19 @@ angular
 				request.b_payments = results.b_payments if typepayments == 'bpayments'
 			);
 
-		save_payment = (payment, typepayments) ->
-			id = payment.id
-			Savepayment = $resource('/:typepayments/:id', { typepayments, id, format: 'json' },
-			{ 
-				'query':  {method:'GET'},
-				'save':   {method:'PUT'},
-				'create': {method:'POST'}
-			});
+		save_payment = (payment, typepayments, request) ->
+			if payment.id
+				id = payment.id
+				Savepayment = $resource('/:typepayments/:id', { typepayments, id, format: 'json' },
+				{ 
+					'save':   {method:'PUT'},
+				});
+			else
+				requestid = request.id
+				Savepayment = $resource('/:typepayments', { typepayments, requestid, format: 'json' },
+				{ 
+					'save':   {method:'POST'},
+				});
 			Savepayment.save( 
 				payment, 
 				(data) ->
@@ -124,7 +129,7 @@ angular
 			b_payment.is_changed = true
 
 		$scope.saveBpayment = (b_payment, request)->
-			save_payment(b_payment, 'bpayments')
+			save_payment(b_payment, 'bpayments', request)
 
 
 #========================== A
@@ -149,7 +154,7 @@ angular
 			b_payment.is_changed = true
 
 		$scope.saveApayment = (a_payment, request)->
-			save_payment(a_payment, 'apayments')
+			save_payment(a_payment, 'apayments', request)
 
 
 
