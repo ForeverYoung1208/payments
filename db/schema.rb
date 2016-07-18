@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160620195641) do
     t.string   "payer_mfo",         limit: 255
     t.string   "recipient",         limit: 255
     t.text     "detail",            limit: 65535
-    t.string   "pecipient_account", limit: 255
+    t.string   "recipient_account", limit: 255
     t.string   "recipient_bank",    limit: 255
     t.string   "recipient_mfo",     limit: 255
     t.string   "recipient_egrpou",  limit: 255

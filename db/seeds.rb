@@ -50,9 +50,9 @@ a_payment = APayment.create([
 		recipient: 'ООО Рога и копіта',
 		detail: 'За рога и за копіта согл. сч 3434 от 11.11.11 в тч НДС 45.00',
 		recipient_account: '2600434012345',
-		recipient_bank: 'Банк михайловский'
-		recipient_mfo: '456454'
-		recipient_egrpou: '65498721'
+		recipient_bank: 'Банк михайловский',
+		recipient_mfo: '456454',
+		recipient_egrpou: '65498721',
 		sum: 10,
 	},
 	{
@@ -63,9 +63,9 @@ a_payment = APayment.create([
 		recipient: 'ООО Рога и копіта',
 		detail: 'За рога и за копіта согл. hfgh fgh df  сч 3434 от 11.11.11 в тч НДС 45.00',
 		recipient_account: '2600434012345',
-		recipient_bank: 'Банк михайловский'
-		recipient_mfo: '456454'
-		recipient_egrpou: '65498721'
+		recipient_bank: 'Банк михайловский',
+		recipient_mfo: '456454',
+		recipient_egrpou: '65498721',
 		sum: 60,
 	},
 	{
@@ -76,9 +76,9 @@ a_payment = APayment.create([
 		recipient: 'ООО Рога и копіта',
 		detail: 'За рога и за копіта согл. yrtytr rt yy r rty  ytyty сч 3434 от 11.11.11 в тч НДС 45.00',
 		recipient_account: '2600434012345',
-		recipient_bank: 'Банк михайловский'
-		recipient_mfo: '456454'
-		recipient_egrpou: '65498721'
+		recipient_bank: 'Банк михайловский',
+		recipient_mfo: '456454',
+		recipient_egrpou: '65498721',
 		sum: 80,
 	}
 ])

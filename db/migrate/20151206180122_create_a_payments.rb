@@ -6,7 +6,7 @@ class CreateAPayments < ActiveRecord::Migration
       t.string :payer_mfo
       t.string :recipient
       t.text :detail
-      t.string :pecipient_account
+      t.string :recipient_account
       t.string :recipient_bank
       t.string :recipient_mfo
       t.string :recipient_egrpou

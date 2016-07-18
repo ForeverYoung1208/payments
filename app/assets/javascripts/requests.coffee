@@ -14,26 +14,26 @@ angular
 			$scope.isCollapsed = true;
 
 # calendar functions	  
-	  
+		
 		$scope.inlineOptions = 
-	    showWeeks: true
+			showWeeks: true
 
-	  $scope.dateOptions =
-	    startingDay: 1
+		$scope.dateOptions =
+			startingDay: 1
 
-	  #$scope.date_from = new Date();
-	 	#$scope.date_to = new Date();
-	  $scope.date_from = '09.12.2015';
-	 	$scope.date_to = '11.12.2015';
-	  $scope.calendar1 =
-	  	opened: false
-	  $scope.calendar2 =
-	  	opened: false
+		#$scope.date_from = new Date();
+		#$scope.date_to = new Date();
+		$scope.date_from = '09.12.2015';
+		$scope.date_to = '11.12.2015';
+		$scope.calendar1 =
+			opened: false
+		$scope.calendar2 =
+			opened: false
 
-	  $scope.open_calendar1 = ()->
-	  	$scope.calendar1.opened = true;
-	  $scope.open_calendar2 = ()->
-	  	$scope.calendar2.opened = true;
+		$scope.open_calendar1 = ()->
+			$scope.calendar1.opened = true;
+		$scope.open_calendar2 = ()->
+			$scope.calendar2.opened = true;
 
 		$scope.calendar_ok = (d1,d2)->
 			bootbox.confirm('Изменить интервал? (все несохраненные изменнеия будут потяряны!)' , (result) ->
@@ -80,9 +80,18 @@ angular
 				'save':   {method:'PUT'},
 				'create': {method:'POST'}
 			});
-			Savepayment.save( payment )
-			return true
+			Savepayment.save( 
+				payment, 
+				(data) ->
+					console.log 'success: ' + data.id
+					payment.is_changed = false
+				(err) ->
+					bootbox.alert 'Сохранение не удалось: ' + err.status
+					payment.is_changed = true
 
+			)
+
+			return true
 
 		$scope.togglePayments = (request, date_from, date_to)->
 			# r_id = request.id
@@ -93,6 +102,8 @@ angular
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 			request.is_visible = true
 
+
+#========================== B
 		$scope.addBpayment = (request)->
 			request.is_visible = true
 			request.b_payments.push({
@@ -113,11 +124,10 @@ angular
 			b_payment.is_changed = true
 
 		$scope.saveBpayment = (b_payment, request)->
-			b_payment.is_changed = false
-			alert('saved Bpayment '+b_payment.id+request.id)
+			save_payment(b_payment, 'bpayments')
 
 
-
+#========================== A
 		$scope.addApayment = (request)->
 			request.a_payments.push({
 				'payer': 'Наименование плательщика',
@@ -140,8 +150,7 @@ angular
 
 		$scope.saveApayment = (a_payment, request)->
 			save_payment(a_payment, 'apayments')
-			a_payment.is_changed = false
-			alert('saved Apayment '+a_payment.id+request.id)
+
 
 
 
