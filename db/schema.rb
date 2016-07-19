@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620195641) do
+ActiveRecord::Schema.define(version: 20160719120412) do
 
   create_table "a_payments", force: :cascade do |t|
     t.string   "payer",             limit: 255
@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 20160620195641) do
     t.string   "recipient_egrpou",  limit: 255
     t.decimal  "sum",                             precision: 14, scale: 2
     t.integer  "request_id",        limit: 4
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+    t.boolean  "is_deleted",                                               default: false
   end
 
   add_index "a_payments", ["request_id"], name: "index_a_payments_on_request_id", using: :btree
@@ -49,8 +50,9 @@ ActiveRecord::Schema.define(version: 20160620195641) do
     t.text     "detail",       limit: 65535
     t.text     "note",         limit: 65535
     t.integer  "request_id",   limit: 4
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+    t.boolean  "is_deleted",                                          default: false
   end
 
   add_index "b_payments", ["b_account_id"], name: "index_b_payments_on_b_account_id", using: :btree

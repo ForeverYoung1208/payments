@@ -25,6 +25,7 @@ angular
 		#$scope.date_to = new Date();
 		$scope.date_from = '09.12.2015';
 		$scope.date_to = '11.12.2015';
+
 		$scope.calendar1 =
 			opened: false
 		$scope.calendar2 =
@@ -42,6 +43,7 @@ angular
 					$scope.date_to = d2 if d2
 					get_requests($scope.date_from, $scope.date_to)
 			)
+			return true
 
 # requests and payments data management
 
@@ -99,10 +101,10 @@ angular
 		refresh_request_sum = (request) ->
 			total_a_sum = 0
 			for index, apayment of request.a_payments
-				total_a_sum += parseFloat(apayment.sum)
+				total_a_sum += parseFloat(apayment.sum) if !apayment.is_deleted
 			total_b_sum = 0
 			for index, bpayment of request.b_payments
-				total_b_sum += parseFloat(bpayment.sum)
+				total_b_sum += parseFloat(bpayment.sum) if !bpayment.is_deleted
 
 			if total_a_sum != total_b_sum 
 				request.sum = total_b_sum + ' / ' + total_a_sum 
