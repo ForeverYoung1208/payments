@@ -3,11 +3,12 @@ class Request < ActiveRecord::Base
 	has_many :a_payments
 	has_many :b_payments
 
-	class SumError < StandardError
-	end
+	# class SumError < StandardError
+	# end
 
 	def sum
-		sum_a == sum_b ? sum_a : raise( SumError, "Помилка: суми за платежами та за заявками різні" )
+		sum_a == sum_b ? sum_a : sum_b.to_s + ' / ' + sum_a.to_s
+		# raise( SumError, "Помилка: суми за платежами та за заявками різні" )
 	end
 	
 	def sum_b

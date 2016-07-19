@@ -90,13 +90,26 @@ angular
 				(data) ->
 					console.log 'success: ' + data.id
 					payment.is_changed = false
+					payment.id = data.id
 				(err) ->
 					bootbox.alert 'Сохранение не удалось: ' + err.status
 					payment.is_changed = true
-
 			)
 
-			return true
+		refresh_request_sum = (request) ->
+			total_a_sum = 0
+			for index, apayment of request.a_payments
+				total_a_sum += parseFloat(apayment.sum)
+			total_b_sum = 0
+			for index, bpayment of request.b_payments
+				total_b_sum += parseFloat(bpayment.sum)
+
+			if total_a_sum != total_b_sum 
+				request.sum = total_b_sum + ' / ' + total_a_sum 
+				request.is_changed = true
+			else
+				request.sum = total_a_sum
+
 
 		$scope.togglePayments = (request, date_from, date_to)->
 			# r_id = request.id
@@ -130,6 +143,7 @@ angular
 
 		$scope.saveBpayment = (b_payment, request)->
 			save_payment(b_payment, 'bpayments', request)
+			refresh_request_sum( request )			
 
 
 #========================== A
@@ -150,13 +164,12 @@ angular
 			})	
 
 		$scope.removeApayment = (a_payment, request) ->
-			b_payment.is_deleted = !b_payment.is_deleted
-			b_payment.is_changed = true
+			a_payment.is_deleted = !a_payment.is_deleted
+			a_payment.is_changed = true
 
 		$scope.saveApayment = (a_payment, request)->
-			save_payment(a_payment, 'apayments', request)
-
-
+			a_payment.id = save_payment(a_payment, 'apayments', request).id
+			refresh_request_sum( request )
 
 
 		$scope.addRequest = (requests)->
