@@ -44,6 +44,26 @@ angular
 					get_requests($scope.date_from, $scope.date_to)
 			)
 			return true
+# dictionaries prepare
+		get_dictionaries = ->
+			req: { 
+				method: 'get',
+				url: '/baccounts',
+				headers: {
+					'Content-Type': json
+				},
+				data: { 
+					test: 'test' 
+				}
+			}
+
+			$http.get().then( ()->
+				alert('ee')
+			,()->
+				alert('bb')
+			)
+
+
 
 # requests and payments data management
 
