@@ -1,7 +1,7 @@
 angular
 	.module('payments')
-	.controller("PaymentsListController", [ '$scope', '$resource'
-	($scope, $resource)->
+	.controller("PaymentsListController", [ '$scope', '$resource', '$filter'
+	($scope, $resource, $filter)->
 
 #main menu functions			
 		$scope.activeMenu = 1;
@@ -194,9 +194,11 @@ angular
 			refresh_request_sum( request )
 
 
+#========================== R
 		$scope.addRequest = (requests)->
+			date = $filter('date')($scope.date_to, "dd.MM.yyyy")
 			requests.push({
-				'date': $scope.date_to,
+				'date': date,
 				'project_name': 'введите проект',
 				'sum': '0.00',
 				'is_approved': false,
