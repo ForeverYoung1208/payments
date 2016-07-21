@@ -45,23 +45,13 @@ angular
 			)
 			return true
 # dictionaries prepare
-		get_dictionaries = ->
-			req: { 
-				method: 'get',
-				url: '/baccounts',
-				headers: {
-					'Content-Type': json
-				},
-				data: { 
-					test: 'test' 
-				}
-			}
+		baccounts_resource = $resource('/baccounts/:id',{ format: 'json'},
+		{
+			'query':  {method:'GET', isArray:true},
+			'save':   {method:'PUT'},
+			'create': {method:'POST'}
+		});
 
-			$http.get().then( ()->
-				alert('ee')
-			,()->
-				alert('bb')
-			)
 
 
 
@@ -95,28 +85,36 @@ angular
 			);
 
 		save_payment = (payment, typepayments, request) ->
+			paymentid = payment.id if payment.id
+			requestid = request.id if request.id
+			payment_resource = $resource('/:typepayments/:paymentid', { typepayments, paymentid, requestid, format: 'json' },
+			{ 
+				'save':   {method:'PUT'},
+				'create':   {method:'POST'},
+			});
+
 			if payment.id
-				id = payment.id
-				Savepayment = $resource('/:typepayments/:id', { typepayments, id, format: 'json' },
-				{ 
-					'save':   {method:'PUT'},
-				});
+				payment_resource.save( 
+					payment, 
+					(data) ->
+						console.log 'success save: ' + data.id
+						payment.is_changed = false
+						# payment.id = data.id
+					(err) ->
+						bootbox.alert 'Сохранение не удалось: ' + err.status
+						payment.is_changed = true
+				)
 			else
-				requestid = request.id
-				Savepayment = $resource('/:typepayments', { typepayments, requestid, format: 'json' },
-				{ 
-					'save':   {method:'POST'},
-				});
-			Savepayment.save( 
-				payment, 
-				(data) ->
-					console.log 'success: ' + data.id
-					payment.is_changed = false
-					payment.id = data.id
-				(err) ->
-					bootbox.alert 'Сохранение не удалось: ' + err.status
-					payment.is_changed = true
-			)
+				payment_resource.create(
+					payment, 
+					(data) ->
+						console.log 'success create: ' + data.id
+						payment.is_changed = false
+						payment.id = data.id
+					(err) ->
+						bootbox.alert 'Создание не удалось: ' + err.status
+						payment.is_changed = true
+				)
 
 		refresh_request_sum = (request) ->
 			total_a_sum = 0
