@@ -10,6 +10,7 @@ class BAccountsController < ApplicationController
   # GET /b_accounts/1
   # GET /b_accounts/1.json
   def show
+    @b_accounts = BAccount.where(id: params[:id])
   end
 
   # GET /b_accounts/new

@@ -46,15 +46,13 @@ angular
 			return true
 # dictionaries prepare
 
-		Baccounts_resource = $resource('/b_accounts/:baccountid',{ :baccountid, format: 'json'},
+		Baccounts_resource = $resource('/b_accounts/:baccountid',{ baccountid: '@id', format: 'json'},
 		{
 			'query':  {method:'GET', isArray:true},
 			'save':   {method:'PUT'},
 			'create': {method:'POST'}
 		});
-		Baccounts_resource.query( (results) ->
-			$scope.baccounts = results
-		)
+		$scope.baccounts = Baccounts_resource.query()
 
 
 
