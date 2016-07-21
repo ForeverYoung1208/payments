@@ -1,0 +1,2 @@
+module BAccountsHelper
+end

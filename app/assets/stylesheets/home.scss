@@ -9,3 +9,28 @@ body { padding-top: 50px; }
     background-color: #efefef; 
 }
 
+.plain_table {
+
+  margin-top: 0em;
+  border-spacing: 0px;
+  border-color: black;
+  border-width: 0px 0px 1px 1px;
+  border-style: solid;
+  width: auto;
+  table-layout: fixed;
+
+	th{
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #B9EFFF;
+	};
+
+	td{
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #FFFFFF;
+	};
+
+
+}
+
