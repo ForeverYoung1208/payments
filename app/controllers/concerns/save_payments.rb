@@ -10,7 +10,10 @@ module SavePayments
 			@payment = APayment.new( payment_params ) 
 			@request.a_payments << @payment
 		elsif params[:bpayment]
-			@payment = BPayment.new( payment_params ) 
+			bpayment_params = payment_params
+			bpayment_params[:b_account] = BAccount.find(params[:b_account])
+
+			@payment = BPayment.new( bpayment_params ) 
 			@request.b_payments << @payment
 		end
 
@@ -26,12 +29,17 @@ module SavePayments
 	end
 	
 	def update
+		full_payment_params = payment_params
 
-		@payment = APayment.unscoped.find(params[:apayment][:id]) if params[:apayment]
-		@payment = BPayment.unscoped.find(params[:bpayment][:id]) if params[:bpayment]
+		if params[:apayment]
+			@payment = APayment.unscoped.find(params[:apayment][:id]) 
+		elsif params[:bpayment]
+			@payment = BPayment.unscoped.find(params[:bpayment][:id]) 
+			full_payment_params[:b_account] = BAccount.find(params[:b_account])
+		end
 
 		respond_to do |format|
-			if @payment.update_attributes( payment_params )
+			if @payment.update_attributes( full_payment_params )
 				format.json { head :ok }
 			else
 				format.json { render json: @payment.errors, status: :unprocessable_entity }
