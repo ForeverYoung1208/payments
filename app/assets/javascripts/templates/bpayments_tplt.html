@@ -18,15 +18,38 @@
   </thead>
   <tbody>
     <tr class="my-b_payments" ng-repeat="b_payment in displayed_bp_collection">
-      <td class="id"          >
-        <div>{{b_payment.id}}</div></td>                   
+      <td class="id">
+        <div>{{b_payment.id}}</div>
+      </td>                        
 
                   
       <td class="b_acc_name"  colspan="2" >
-        <select class= "form-control no_border" myEditableCell="b_payment" ng-model="b_payment.b_account">
-          <option ng-repeat = "b_acc in baccounts" value="{{b_acc.id}}" >{{ b_acc.number +' '+b_acc.name }}</option>
 
-        </select></td>
+        <span uib-dropdown >
+          <a href id="simple-dropdown" uib-dropdown-toggle>
+            {{b_payment.b_account}}
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+            <li ng-repeat="baccount in baccounts">
+              <a href ng-click = "setbaccount(b_payment, baccount.id)">{{ baccount.number + ' ' + baccount.name }}</a>
+            </li>
+          </ul>
+        </span>
+
+        <!-- select 
+          class="form-control no_border" 
+          myEditableCell="b_payment" 
+          ng-model="b_payment.b_account" 
+          ng-options="baccount.name for baccount in baccounts"
+        >
+        </select-->
+
+        <!-- select class= "form-control no_border" myEditableCell="b_payment" ng-model="b_payment.b_account" >
+          <option ng-repeat = "b_acc in baccounts" value="{{b_acc.id}}" ng-selected="{{b_acc.id == b_payment.b_account}}" >{{ b_acc.number +' '+b_acc.name }}</option>
+
+        </select -->
+        
+      </td>
 
       <!-- td class="b_acc_number">
         <input class= "form-control no_border" myEditableCell="b_payment" ng-model="b_payment.b_acc_number"></input></td>                   

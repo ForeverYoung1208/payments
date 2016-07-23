@@ -55,8 +55,6 @@ angular
 		$scope.baccounts = Baccounts_resource.query()
 
 
-
-
 # requests and payments data management
 
 		get_requests = ( date_from, date_to )->
@@ -144,11 +142,15 @@ angular
 
 
 #========================== B
+
+		$scope.setbaccount = (bpayment, baccountid) ->
+			bpayment.b_account = baccountid
+			bpayment.is_changed = true
+
 		$scope.addBpayment = (request)->
 			request.is_visible = true
 			request.b_payments.push({
-				'b_acc_number': '0.00',
-				'b_acc_name': 'Введите статью',
+				'b_account': '1',
 				'sum_allowed': '0.00',
 				'sum_rest': '0.00',
 				'sum': '0.00',
