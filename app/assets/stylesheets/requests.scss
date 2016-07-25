@@ -115,3 +115,14 @@
 .deleted{
 	text-decoration: line-through;
 }
+
+div.multiline-select {
+	.ui-select-bootstrap .ui-select-choices-row a{
+    white-space: normal;
+	}
+	span { 
+		@extend .no_border;
+		white-space: normal;
+ 	}
+
+}

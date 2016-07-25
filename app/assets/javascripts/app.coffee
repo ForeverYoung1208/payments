@@ -4,7 +4,9 @@ angular.module('payments',[
 	'smart-table',
 	'ngAnimate',
 	'ui.bootstrap',
-	'templates'
+	'templates',
+	'ui.select', 
+	'ngSanitize'
 ]);
 
 #прикольно,ангуляр фильтр работает )))

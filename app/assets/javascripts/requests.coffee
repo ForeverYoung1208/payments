@@ -141,7 +141,7 @@ angular
 			request.is_visible = true
 
 
-#========================== B
+#=========================================================================================== B
 
 		$scope.setbaccount = (bpayment, baccountid) ->
 			bpayment.b_account = baccountid
@@ -169,8 +169,12 @@ angular
 			save_payment(b_payment, 'bpayments', request)
 			refresh_request_sum( request )			
 
+		$scope.baccount_changed = ( new_baccount, bpayment ) ->
+			bpayment.sum_allowed = new_baccount.plan
+			bpayment.sum_rest = new_baccount.plan-new_baccount.fact
+			bpayment.is_changed = true
 
-#========================== A
+#============================================================================================== A
 		$scope.addApayment = (request)->
 			request.a_payments.push({
 				'payer': 'Наименование плательщика',
@@ -196,7 +200,7 @@ angular
 			refresh_request_sum( request )
 
 
-#========================== R
+#============================================================================================= R
 		$scope.addRequest = (requests)->
 			date = $filter('date')($scope.date_to, "dd.MM.yyyy")
 			requests.push({
@@ -220,7 +224,7 @@ angular
 			request.is_deleted = !request.is_deleted
 			request.is_changed = true
 	])
-
+#=================================================================================================      DIRECTIVES
 	.directive('bpaymentshere', ()->
 		{
 			restrict: 'E',

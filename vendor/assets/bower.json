@@ -9,6 +9,8 @@
     "angular-smart-table": "latest",
     "angular-animate": "latest",
     "angular-bootstrap": "latest",
-    "bootbox": "latest"
+    "bootbox": "latest",
+    "angular-ui-select": "latest",
+    "angular-sanitize": "latest"
   }
 }

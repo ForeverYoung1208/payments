@@ -24,6 +24,8 @@
 //= require angular-animate/angular-animate.min
 //= require angular-bootstrap/ui-bootstrap-tpls.min
 //= require bootbox/bootbox
+//= require angular-sanitize/angular-sanitize.min
+//= require angular-ui-select/dist/select.min
 //= require app
 //= require requests
 //= require home

@@ -8,7 +8,7 @@ json.array! @requests_and_project  do |request|
 	json.updated_at request.updated_at.strftime('%d.%m.%Y %H:%M:%S')
 	json.b_payments request.b_payments do |b_payment|
 		json.id b_payment.id
-		json.b_account b_payment.b_account.id
+		json.b_account b_payment.b_account
     json.sum_allowed b_payment.sum_allowed
     json.sum_rest b_payment.sum_rest
     json.recipient b_payment.recipient

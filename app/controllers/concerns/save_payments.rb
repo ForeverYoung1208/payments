@@ -9,9 +9,10 @@ module SavePayments
 		if params[:apayment]
 			@payment = APayment.new( payment_params ) 
 			@request.a_payments << @payment
+
 		elsif params[:bpayment]
 			bpayment_params = payment_params
-			bpayment_params[:b_account] = BAccount.find(params[:b_account])
+			bpayment_params[:b_account] = BAccount.find(params[:b_account][:id])
 
 			@payment = BPayment.new( bpayment_params ) 
 			@request.b_payments << @payment
@@ -35,7 +36,7 @@ module SavePayments
 			@payment = APayment.unscoped.find(params[:apayment][:id]) 
 		elsif params[:bpayment]
 			@payment = BPayment.unscoped.find(params[:bpayment][:id]) 
-			full_payment_params[:b_account] = BAccount.find(params[:b_account])
+			full_payment_params[:b_account] = BAccount.find(params[:b_account][:id])
 		end
 
 		respond_to do |format|
