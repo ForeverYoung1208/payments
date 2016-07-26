@@ -4,7 +4,7 @@ angular
 	($scope, $resource, $filter)->
 
 #main menu functions			
-		$scope.activeMenu = 1;
+		$scope.activeMenu = 2;
 
 		$scope.isActive = (current)->
 			current == $scope.activeMenu;
@@ -57,32 +57,16 @@ angular
 
 # requests and payments data management
 
-		get_requests = ( date_from, date_to )->
-			RequestAll = $resource('/requests', { date_from, date_to, format: 'json' },
+		Requests = ( date_from, date_to, id )->
+			return $resource('/requests/:id', { id, date_from, date_to, format: 'json' },
 			{ 
 				'query':  {method:'GET', isArray:true},
 				'save':   {method:'PUT'},
 				'create': {method:'POST'}
 			});
 
-			RequestAll.query( (results) ->
-				$scope.rowCollection = results
-			);
+		$scope.rowCollection = Requests($scope.date_from, $scope.date_to).query()
 
-		get_requests($scope.date_from, $scope.date_to)
-
-		get_payments = (request, typepayments, date_from, date_to) ->
-			r_id = request.id
-			GetPayments = $resource('/requests/:r_id/:typepayments', { r_id, typepayments, date_from, date_to, format: 'json' },
-			{ 
-				'query':  {method:'GET'},
-				'save':   {method:'PUT'},
-				'create': {method:'POST'}
-			});
-			GetPayments.query( (results) ->
-				request.a_payments = results.a_payments if typepayments == 'apayments'
-				request.b_payments = results.b_payments if typepayments == 'bpayments'
-			);
 
 		save_payment = (payment, typepayments, request) ->
 			paymentid = payment.id if payment.id
@@ -131,12 +115,7 @@ angular
 				request.sum = total_a_sum
 
 
-		$scope.togglePayments = (request, date_from, date_to)->
-			# r_id = request.id
-			# if request.is_bpayments_visible
-			# 	get_payments(request, 'apayments', date_from, date_to)
-			# if !request.is_bpayments_visible
-			# 	get_payments(request, 'bpayments', date_from, date_to)
+		$scope.togglePayments = (request)->
 			request.is_bpayments_visible = !request.is_bpayments_visible;
 			request.is_visible = true
 
@@ -224,7 +203,10 @@ angular
 			request.is_deleted = !request.is_deleted
 			request.is_changed = true
 	])
+
 #=================================================================================================      DIRECTIVES
+
+
 	.directive('bpaymentshere', ()->
 		{
 			restrict: 'E',

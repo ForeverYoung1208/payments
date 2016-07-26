@@ -13,8 +13,7 @@ angular.module('payments',[
 #выделим их в отдельный модуль
 #angular.module('filters',[])
 
-angular
-	.module('filters',[])
+angular.module('filters',[])
 	.filter('rusBoolean',->
 		(input)->
 			if input
