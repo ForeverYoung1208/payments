@@ -28,7 +28,7 @@
 //= require angular-ui-select/dist/select.min
 //= require app
 //= require requests
-//= require requests_directives
+//= require datepickers
 //= require home
 //= require_tree ./templates 
 

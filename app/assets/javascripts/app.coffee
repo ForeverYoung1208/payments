@@ -7,7 +7,7 @@ angular.module('payments',[
 	'templates',
 	'ui.select', 
 	'ngSanitize',
-	'payments_directives'
+	'datepickers'
 ]);
 
 #прикольно,ангуляр фильтр работает )))

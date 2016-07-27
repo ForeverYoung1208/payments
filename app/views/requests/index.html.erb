@@ -29,44 +29,16 @@
   <section class="container-fluid">
     <div class="row">    
       <div class='col-sm-offset-0 col-sm-12 text-center'>
-        <div class='set_period' >
 
-          <span class="label_calendar">Задать период отображения: с</span>
-          <span class="input-group">
-            <input 
-              type="text"
-              class="form-control"
-              ng-model="date_from_temp"
-              uib-datepicker-popup="dd.MM.yyyy"
-              datepicker-options="dateOptions"
-              is-open="calendar1.opened"
-            >
 
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="open_calendar1()"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </span>
+        <datepickershere 
+          datefrom="date_from" 
+          dateto="date_to"
+          warnmessage= ""
+          onselect= "fetchrequests()"
+        > </datepickershere>
 
-          <span class="label_calendar">по</span>
 
-          <span class="input-group">
-            <input 
-              type="text"
-              class="form-control"
-              ng-model="date_to_temp"
-              uib-datepicker-popup="dd.MM.yyyy"
-              datepicker-options="dateOptions"
-              is-open="calendar2.opened"
-            >
-
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="open_calendar2()"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </span>
-          <span>
-            <button type="button" class="btn btn-success" ng-click="calendar_ok(date_from_temp, date_to_temp)"><i class="glyphicon glyphicon-ok"></i></button>
-          </span>  
-        </div>
       </div>
     </div>
 

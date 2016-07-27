@@ -6,6 +6,11 @@ angular
 #main menu functions			
 		$scope.activeMenu = 2;
 
+		#$scope.date_from = new Date();
+		#$scope.date_to = new Date();
+		$scope.date_from = '09.12.2015';
+		$scope.date_to = '11.12.2015';
+
 		$scope.isActive = (current)->
 			current == $scope.activeMenu;
 		
@@ -13,37 +18,7 @@ angular
 			$scope.activeMenu = clicked;
 			$scope.isCollapsed = true;
 
-# calendar functions	  
-		
-		$scope.inlineOptions = 
-			showWeeks: true
 
-		$scope.dateOptions =
-			startingDay: 1
-
-		#$scope.date_from = new Date();
-		#$scope.date_to = new Date();
-		$scope.date_from = '09.12.2015';
-		$scope.date_to = '11.12.2015';
-
-		$scope.calendar1 =
-			opened: false
-		$scope.calendar2 =
-			opened: false
-
-		$scope.open_calendar1 = ()->
-			$scope.calendar1.opened = true;
-		$scope.open_calendar2 = ()->
-			$scope.calendar2.opened = true;
-
-		$scope.calendar_ok = (d1,d2)->
-			bootbox.confirm('Изменить интервал? (все несохраненные изменнеия будут потяряны!)' , (result) ->
-				if result == true
-					$scope.date_from = d1 if d1
-					$scope.date_to = d2 if d2
-					get_requests($scope.date_from, $scope.date_to)
-			)
-			return true
 # dictionaries prepare
 
 		Baccounts_resource = $resource('/b_accounts/:baccountid',{ baccountid: '@id', format: 'json'},
@@ -65,7 +40,10 @@ angular
 				'create': {method:'POST'}
 			});
 
-		$scope.rowCollection = Requests($scope.date_from, $scope.date_to).query()
+		$scope.fetch_requests = (date_from, date_to) ->
+			$scope.rowCollection = Requests(date_from, date_to).query()
+
+		$scope.fetch_requests($scope.date_from, $scope.date_to)
 
 
 		save_payment = (payment, typepayments, request) ->
@@ -205,6 +183,41 @@ angular
 	])
 
 #=================================================================================================      DIRECTIVES
+
+	.directive('bpaymentshere', ()->
+		{
+			restrict: 'E',
+			templateUrl: 'bpayments_tplt.html'
+		}
+	)
+
+	.directive('apaymentshere', ()->
+		{
+			restrict: 'E',
+			templateUrl: 'apayments_tplt.html'
+		}
+	)
+
+	.directive 'myeditablecell', ->
+		{
+			scope: {
+				myeditablecell: "="
+				};
+			link: (scope, elm, attrs, ctrl) ->
+				elm.bind 'blur', ->
+					elm.addClass 'no_border'
+				elm.bind 'focus', ->
+					elm.removeClass 'no_border'
+				elm.bind 'keydown', (event) ->
+					scope.myeditablecell.is_changed = true
+
+				scope.$watch('myeditablecell.is_deleted', (d)->
+					elm.addClass 'deleted' if d
+					elm.removeClass 'deleted' if !d
+				)
+				
+
+		}
 
 
 
