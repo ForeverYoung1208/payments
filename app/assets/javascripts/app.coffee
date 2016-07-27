@@ -6,7 +6,8 @@ angular.module('payments',[
 	'ui.bootstrap',
 	'templates',
 	'ui.select', 
-	'ngSanitize'
+	'ngSanitize',
+	'payments_directives'
 ]);
 
 #прикольно,ангуляр фильтр работает )))
