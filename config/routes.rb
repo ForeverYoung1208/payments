@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources 'requests', only: [:index, :show, :new, :create, :apayments] do 
+  resources 'requests' do 
     get 'apayments', on: :member
     get 'bpayments', on: :member
   end

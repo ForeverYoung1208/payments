@@ -26,7 +26,6 @@
 //= require bootbox/bootbox
 //= require angular-sanitize/angular-sanitize.min
 //= require angular-ui-select/dist/select.min
-//= require app
 //= require requests
 //= require datepickers
 //= require home

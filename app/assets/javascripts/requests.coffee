@@ -1,5 +1,15 @@
 angular
-	.module('requests')
+	.module('requests',[
+		'ngResource',
+		'filters',
+		'smart-table',
+		'ngAnimate',
+		'ui.bootstrap',
+		'templates',
+		'ui.select', 
+		'ngSanitize',
+		'datepickers'
+	])	
 	.controller("RequestsController", [ '$scope', '$resource', '$filter'
 	($scope, $resource, $filter)->
 
@@ -174,8 +184,23 @@ angular
 			})
 
 		$scope.saveRequest = (request)->
-			request.is_changed = false
-			alert('saved Request '+request.id)
+			if request.id
+				request = Requests().save( request, 
+				(data)->
+					alert ('ok: ' + data)
+					request.is_changed = false
+				(err) ->
+					alert ('err: ' + err)
+				)
+			else	
+				request = Requests().create( request, 
+				(data)->
+					alert ('ok: ' + data)
+					request.is_changed = false
+				(err) ->
+					alert ('err: ' + err)
+				)
+
 
 		$scope.removeRequest = (request)->
 			request.is_deleted = !request.is_deleted
