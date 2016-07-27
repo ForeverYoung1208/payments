@@ -3,21 +3,12 @@ angular
 	.directive('datepickershere', ()->
 		{
 			restrict: 'E',
-			# scope: {
-			# 	warnmessage: "="
-			# 	datefrom: "=",
-			# 	dateto: "=",
-			# 	onselect: "&"
-			# 	},
 			templateUrl: 'datepickers_tplt.html',
 			controller: 'datepickersCtrl'
 		}
 	)
 	.controller("datepickersCtrl", [ '$scope',	($scope)->
 			
-		$scope.inlineOptions = 
-			showWeeks: true
-
 		$scope.dateOptions =
 			startingDay: 1
 
@@ -36,7 +27,7 @@ angular
 				if result == true
 					$scope.date_from = d1 if d1
 					$scope.date_to = d2 if d2
-					$scope.fetch_requests($scope.date_from, $scope.date_to)
+					$scope.fetch_requests(d1, d2)
 			)
 			return true				
 	])

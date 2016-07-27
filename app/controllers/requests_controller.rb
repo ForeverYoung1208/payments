@@ -3,15 +3,10 @@ class RequestsController < ApplicationController
 	# GET /requests
 	# GET /requests.json
 	def index
-		if params[:date_from] or params[:date_to]
-			params[:date_from]||= Time.now.to_s(:db)
-			params[:date_to]||= Time.now.to_s(:db)
-
-			my_date_from = params[:date_from].to_datetime.to_s(:db)
-			my_date_to = params[:date_to].to_datetime.to_s(:db)
-
-			@requests_and_project = Request.joins(:project).where("requests.date >= '#{my_date_from}' and requests.date <= '#{my_date_to}'")
-		end
+		
+		@requests_and_project = Request.joins(:project)
+		@requests_and_project = @requests_and_project.where("requests.date >= ?", params[:date_from].to_datetime.to_s(:db) ) if params[:date_from]
+		@requests_and_project = @requests_and_project.where("requests.date <= ?", params[:date_to].to_datetime.to_s(:db) ) if params[:date_to]
 
 		respond_to do |format|
 			format.html {} # index.html.erb
