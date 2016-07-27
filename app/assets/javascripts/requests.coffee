@@ -1,6 +1,6 @@
 angular
-	.module('payments')
-	.controller("PaymentsListController", [ '$scope', '$resource', '$filter'
+	.module('requests')
+	.controller("RequestsController", [ '$scope', '$resource', '$filter'
 	($scope, $resource, $filter)->
 
 #main menu functions			

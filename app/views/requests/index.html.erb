@@ -1,4 +1,4 @@
-<div ng-controller='PaymentsListController'>
+<div ng-controller='RequestsController'>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,12 +31,12 @@
       <div class='col-sm-offset-0 col-sm-12 text-center'>
 
 
-        <datepickershere 
+        <datepickers
           datefrom="date_from" 
           dateto="date_to"
           warnmessage= " 'Изменить интервал? (все несохраненные изменнеия будут потяряны!)' "
           callback= "fetch_requests(date_from, date_to)"
-        > </datepickershere>
+        > </datepickers>
 
 
       </div>

@@ -1,6 +1,6 @@
 angular
 	.module('datepickers', [])
-	.directive('datepickershere', ()->
+	.directive('datepickers', ()->
 		{
 			restrict: 'E',
 			scope: {

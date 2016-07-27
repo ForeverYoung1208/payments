@@ -1,5 +1,5 @@
 angular
-	.module('payments')
+	.module('budget',['requests'])
 	.controller("HomeController", [ '$scope',
 	($scope)-> 
 		$scope.activeMenu = 1;

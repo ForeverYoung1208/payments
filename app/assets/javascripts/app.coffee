@@ -1,4 +1,4 @@
-angular.module('payments',[
+angular.module('requests',[
 	'ngResource',
 	'filters',
 	'smart-table',
