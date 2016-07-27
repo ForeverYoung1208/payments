@@ -34,8 +34,8 @@
         <datepickershere 
           datefrom="date_from" 
           dateto="date_to"
-          warnmessage= ""
-          onselect= "fetchrequests()"
+          warnmessage= " 'Изменить интервал? (все несохраненные изменнеия будут потяряны!)' "
+          callback= "fetch_requests(date_from, date_to)"
         > </datepickershere>
 
 
