@@ -209,10 +209,10 @@ angular
 			else		
 				Requests().create( request_to_save, 
 				(data)->
-					request.is_changed = false
 					request.id = data.id
 					request.created_at = $filter('date')(data.created_at, 'dd.MM.yyyy HH:mm:ss')
 					request.updated_at = $filter('date')(data.updated_at, 'dd.MM.yyyy HH:mm:ss')					
+					request.is_changed = false
 				(err) ->
 					alert ('err: ' + err)
 				)
