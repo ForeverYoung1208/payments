@@ -4,9 +4,11 @@ class RequestsController < ApplicationController
 	# GET /requests.json
 	def index
 		
-		@requests_and_project = Request.joins(:project)
+		@requests_and_project = Request.all
 		@requests_and_project = @requests_and_project.where("requests.date >= ?", params[:date_from].to_datetime.to_s(:db) ) if params[:date_from]
 		@requests_and_project = @requests_and_project.where("requests.date <= ?", params[:date_to].to_datetime.to_s(:db) ) if params[:date_to]
+		@requests_and_project += Request.where("requests.date is null").to_a
+
 
 		respond_to do |format|
 			format.html {} # index.html.erb
@@ -46,7 +48,7 @@ class RequestsController < ApplicationController
 	# PUT /requests/1
 	# PUT /requests/1.json
 	def update
-		@request = Request.find(params[:id])
+		@request = Request.unscoped.find(params[:id])
 
 		respond_to do |format|
 			if @request.update_attributes( update_request_params )
@@ -77,7 +79,7 @@ class RequestsController < ApplicationController
 	private
 
 	def update_request_params
-		params.permit(:id, :date, :project_id)
+		params.permit(:id, :date, :project_id, :is_deleted)
 	end
 
   # POST /contacts

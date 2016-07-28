@@ -195,11 +195,9 @@ angular
 
 		$scope.saveRequest = (request)->
 			request_to_save = angular.copy(request)
-			request_to_save.project = []
-			request_to_save.project_id = request.project.id			
-
 			if request.id
-
+				request_to_save.project = []
+				request_to_save.project_id = request.project.id if request.project
 				Requests( null, null, request.id).save( request_to_save, 
 				(data)->
 					request.is_changed = false

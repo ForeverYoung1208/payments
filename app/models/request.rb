@@ -3,6 +3,8 @@ class Request < ActiveRecord::Base
 	has_many :a_payments
 	has_many :b_payments
 
+	default_scope { where( is_deleted: false ) }
+
 	# class SumError < StandardError
 	# end
 
