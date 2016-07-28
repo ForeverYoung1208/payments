@@ -57,10 +57,27 @@ class RequestsController < ApplicationController
 		end
 	end
 
+	# POST /requests
+	# POST /requests.json
+	def create
+		@request = Request.new( update_request_params )
+
+		respond_to do |format|
+			if @request.save
+				format.json { render json: @request, status: :created }				
+			else
+				format.json { render json: @request.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+
+
+
 	private
 
 	def update_request_params
-		params.require(:request).permit(:id, :a_payments, :b_payments, :date, :project_name, :sum)
+		params.permit(:id, :date, :project_id)
 	end
 
   # POST /contacts

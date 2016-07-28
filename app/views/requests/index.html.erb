@@ -75,9 +75,23 @@
               <td>
                 <input class= "form-control no_border" myEditableCell="row" ng-model="row.date"></input>
               </td>
-              <td>
+
+              <!-- td>
                 <input class= "form-control no_border" myEditableCell="row" ng-model="row.project_name"></input>
+              </td -->
+              <td >
+                <div class="multiline-select">
+                  <ui-select ng-model="row.project" on-select="project_changed($select.selected, row)" >
+                    <ui-select-match>
+                        <span ng-bind="$select.selected.name"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="project in (projects | filter: $select.search) track by project.id">
+                        <span ng-bind="project.name"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
               </td>
+
               <td>{{row.sum}}</td>
               <td>{{row.is_approved|rusBoolean}}</td>
               <td>{{row.created_at}}</td>

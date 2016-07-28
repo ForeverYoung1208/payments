@@ -39,6 +39,16 @@ angular
 		});
 		$scope.baccounts = Baccounts_resource.query()
 
+		Projects_resource = $resource('/projects/:projectid',{ projectid: '@id', format: 'json'},
+		{
+			'query':  {method:'GET', isArray:true},
+			'save':   {method:'PUT'},
+			'create': {method:'POST'}
+		});
+		$scope.projects = Projects_resource.query()
+
+
+
 
 # requests and payments data management
 
@@ -184,20 +194,27 @@ angular
 			})
 
 		$scope.saveRequest = (request)->
+			request_to_save = angular.copy(request)
+			request_to_save.project = []
+			request_to_save.project_id = request.project.id			
+
 			if request.id
-				Requests( null, null, request.id).save( request, 
+
+				Requests( null, null, request.id).save( request_to_save, 
 				(data)->
 					request.is_changed = false
-					console.log (data)
+					request.created_at = $filter('date')(data.created_at, 'dd.MM.yyyy HH:mm:ss')
+					request.updated_at = $filter('date')(data.updated_at, 'dd.MM.yyyy HH:mm:ss')
 				(err) ->
 					alert ('err: ' + err)
 				)
 			else		
-				request.id = Requests().create( request, 
+				Requests().create( request_to_save, 
 				(data)->
-					alert ('ok: ' + data)
 					request.is_changed = false
-					return data.id
+					request.id = data.id
+					request.created_at = $filter('date')(data.created_at, 'dd.MM.yyyy HH:mm:ss')
+					request.updated_at = $filter('date')(data.updated_at, 'dd.MM.yyyy HH:mm:ss')					
 				(err) ->
 					alert ('err: ' + err)
 				)
@@ -206,6 +223,10 @@ angular
 		$scope.removeRequest = (request)->
 			request.is_deleted = !request.is_deleted
 			request.is_changed = true
+
+		$scope.project_changed = (project, request)->
+			request.is_changed = true
+
 	])
 
 #=================================================================================================      DIRECTIVES
