@@ -185,18 +185,19 @@ angular
 
 		$scope.saveRequest = (request)->
 			if request.id
-				request = Requests().save( request, 
+				Requests( null, null, request.id).save( request, 
 				(data)->
-					alert ('ok: ' + data)
 					request.is_changed = false
+					console.log (data)
 				(err) ->
 					alert ('err: ' + err)
 				)
-			else	
-				request = Requests().create( request, 
+			else		
+				request.id = Requests().create( request, 
 				(data)->
 					alert ('ok: ' + data)
 					request.is_changed = false
+					return data.id
 				(err) ->
 					alert ('err: ' + err)
 				)

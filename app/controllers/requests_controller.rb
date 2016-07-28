@@ -49,12 +49,18 @@ class RequestsController < ApplicationController
 		@request = Request.find(params[:id])
 
 		respond_to do |format|
-			if @request.update_attributes(params[:request])
-				format.json { head :no_content }
+			if @request.update_attributes( update_request_params )
+				format.json { render json: @request, status: :created }				
 			else
 				format.json { render json: @request.errors, status: :unprocessable_entity }
 			end
 		end
+	end
+
+	private
+
+	def update_request_params
+		params.require(:request).permit(:id, :a_payments, :b_payments, :date, :project_name, :sum)
 	end
 
   # POST /contacts
