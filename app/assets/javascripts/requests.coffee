@@ -55,7 +55,10 @@ angular
 		Requests = ( date_from, date_to, id )->
 			return $resource('/requests/:id', { id, date_from, date_to, format: 'json' },
 			{ 
-				'query':  {method:'GET', isArray:true},
+				'query':  {
+					method:'GET',
+					isArray:true
+				},
 				'save':   {method:'PUT'},
 				'create': {method:'POST'}
 			});
@@ -178,20 +181,29 @@ angular
 
 
 #============================================================================================= R
-		$scope.addRequest = (requests)->
-			date = $filter('date')($scope.date_to, "dd.MM.yyyy")
-			requests.push({
+		$scope.addRequest = (requests, date)->
+			new_request = Requests().create({
 				'date': date,
-				'project_name': 'введите проект',
-				'sum': '0.00',
 				'is_approved': false,
-				'b_payments': [],
-				'a_payments': [],
 				'is_visible': false,
 				'is_bpayments_visible': true,
 				'is_new': true,
 				'is_changed': true
-			})
+				},
+				(data)->
+					data.date = $filter('date')(data.date, 'dd.MM.yyyy')
+					data.created_at = $filter('date')(data.created_at, 'dd.MM.yyyy HH:mm:ss')
+					data.updated_at = $filter('date')(data.updated_at, 'dd.MM.yyyy HH:mm:ss')					
+					data.is_changed = false
+					data.b_payments = []
+					data.a_payments = []
+					return data
+				(err) ->
+					alert ('err: ' + err)
+			)
+			requests.push( new_request )
+
+
 
 		$scope.saveRequest = (request)->
 			request_to_save = angular.copy(request)
