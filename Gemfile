@@ -10,6 +10,7 @@ gem 'rails', '4.2.5'
 ###+
 gem 'mysql2'
 gem 'activerecord-session_store'
+gem 'spreadsheet'
 ###+
 
 # Use SCSS for stylesheets
