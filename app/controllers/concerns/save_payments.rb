@@ -36,7 +36,11 @@ module SavePayments
 			@payment = APayment.unscoped.find(params[:apayment][:id]) 
 		elsif params[:bpayment]
 			@payment = BPayment.unscoped.find(params[:bpayment][:id]) 
+		
 			full_payment_params[:b_account] = BAccount.find(params[:b_account][:id])
+			full_payment_params[:a_account] = AAccount.find(params[:a_account][:id]) if params[:a_account]
+			full_payment_params[:resourcer] = Resourcer.find(params[:b_account][:id]) if params[:b_account]
+
 		end
 
 		respond_to do |format|

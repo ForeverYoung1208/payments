@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728141137) do
+ActiveRecord::Schema.define(version: 20160802111221) do
 
   create_table "a_payments", force: :cascade do |t|
     t.string   "payer",             limit: 255
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20160728141137) do
   end
 
   add_index "a_payments", ["request_id"], name: "index_a_payments_on_request_id", using: :btree
+
+  create_table "a_accounts", force: :cascade do |t|
+    t.string   "number",       limit: 255
+    t.string   "company_name", limit: 255
+    t.string   "code",         limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "b_accounts", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -53,10 +61,14 @@ ActiveRecord::Schema.define(version: 20160728141137) do
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
     t.boolean  "is_deleted",                                          default: false
+    t.integer  "resourcer_id", limit: 4
+    t.integer  "a_account_id",  limit: 4
   end
 
+  add_index "b_payments", ["a_account_id"], name: "index_b_payments_on_a_account_id", using: :btree
   add_index "b_payments", ["b_account_id"], name: "index_b_payments_on_b_account_id", using: :btree
   add_index "b_payments", ["request_id"], name: "index_b_payments_on_request_id", using: :btree
+  add_index "b_payments", ["resourcer_id"], name: "index_b_payments_on_resourcer_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -74,6 +86,12 @@ ActiveRecord::Schema.define(version: 20160728141137) do
   end
 
   add_index "requests", ["project_id"], name: "index_requests_on_project_id", using: :btree
+
+  create_table "resourcers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", limit: 255,   null: false
@@ -104,7 +122,9 @@ ActiveRecord::Schema.define(version: 20160728141137) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "a_payments", "requests"
+  add_foreign_key "b_payments", "a_accounts"
   add_foreign_key "b_payments", "b_accounts"
   add_foreign_key "b_payments", "requests"
+  add_foreign_key "b_payments", "resourcers"
   add_foreign_key "requests", "projects"
 end

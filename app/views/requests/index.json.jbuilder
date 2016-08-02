@@ -16,6 +16,8 @@ json.array! @requests_and_project  do |request|
     json.detail b_payment.detail
     json.note b_payment.note
 		json.sum b_payment.sum
+		json.a_account b_payment.a_account
+		json.resourcer b_payment.resourcer
 	end
 	json.a_payments request.a_payments do |a_payment|
 		json.id a_payment.id

@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr class="my-a_payments" ng-repeat="a_payment in displayed_ap_collection">
-      <td class="id">{{a_payment.id}}
+      <td class="id" myEditableCell="a_payment">{{a_payment.id}}
       </td>
                    
       <td class="payer">   
@@ -36,7 +36,7 @@
       <input class= "form-control no_border" myEditableCell="a_payment" ng-model="a_payment.recipient"></input></td>
 
       <td class="detail">
-      <input class= "form-control no_border" myEditableCell="a_payment" ng-model="a_payment.detail"></input></td>
+      <textarea class= "form-control no_border" myEditableCell="a_payment" ng-model="a_payment.detail"></textarea></td>
 
       <td class="recipient_account">
       <input class= "form-control no_border" myEditableCell="a_payment" ng-model="a_payment.recipient_account"></input></td>

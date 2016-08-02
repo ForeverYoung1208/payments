@@ -3,7 +3,7 @@ class BpaymentsController < ApplicationController
 
 
   def payment_params
-  	params.require(:bpayment).permit(:sum_allowed, :sum_rest, :sum, :recipient, :detail, :note, :is_deleted, :b_account )
+  	params.require(:bpayment).permit(:sum_allowed, :sum_rest, :sum, :recipient, :detail, :note, :is_deleted, :b_account, :a_account, :resourcer )
   end
   
 end

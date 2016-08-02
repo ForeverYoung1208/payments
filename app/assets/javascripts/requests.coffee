@@ -39,6 +39,23 @@ angular
 		});
 		$scope.baccounts = Baccounts_resource.query()
 
+		Aaccounts_resource = $resource('/a_accounts/:aaccountid',{ aaccountid: '@id', format: 'json'},
+		{
+			'query':  {method:'GET', isArray:true},
+			'save':   {method:'PUT'},
+			'create': {method:'POST'}
+		});
+		$scope.aaccounts = Aaccounts_resource.query()
+
+		Resourcers_resource = $resource('/resourcers/:resourcerid',{ resourcerid: '@id', format: 'json'},
+		{
+			'query':  {method:'GET', isArray:true},
+			'save':   {method:'PUT'},
+			'create': {method:'POST'}
+		});
+		$scope.resourcers = Resourcers_resource.query()
+
+
 		Projects_resource = $resource('/projects/:projectid',{ projectid: '@id', format: 'json'},
 		{
 			'query':  {method:'GET', isArray:true},
@@ -137,6 +154,8 @@ angular
 				'recipient': 'Введите получателя',
 				'detail': 'Назначение платежа',
 				'note': '',
+				'a_account': '1',
+				'resourcer': '1',
 				'is_new': true,
 				'is_changed': true
 			})
@@ -153,6 +172,13 @@ angular
 			bpayment.sum_allowed = new_baccount.plan
 			bpayment.sum_rest = new_baccount.plan-new_baccount.fact
 			bpayment.is_changed = true
+
+		$scope.aaccount_changed = ( new_aaccount, bpayment ) ->
+			bpayment.is_changed = true	
+
+		$scope.resourcer_changed = ( new_resourcer, bpayment ) ->
+			bpayment.is_changed = true	
+
 
 #============================================================================================== A
 		$scope.addApayment = (request)->

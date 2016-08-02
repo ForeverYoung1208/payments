@@ -22,10 +22,13 @@
 	.sum_allowed { width:6% };
 	.sum_rest { width:6% };
 	.sum { width:6% };
-	.recipient { width:16% };
-	.detail { width:20% };
-	.note { width:20% };
+	.recipient { width:13% };
+	.detail { width:17% };
+	.note { width:17% };
+	.aaccount{ width:4% };
+	.resourcer{ width:6% }
 	.btns {
+		width: 10%;
 		.btn-success{
 			float:left;
 		}

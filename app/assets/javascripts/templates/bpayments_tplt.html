@@ -13,12 +13,15 @@
       <th st-sort="recipient" >Получатель</th>
       <th st-sort="detail" >Назначение</th>
       <th st-sort="note" >Примечание</th>
+      <th st-sort="aaccount" >Код р/сч</th>
+      <th st-sort="resourcer" >Ресурсодатель</th>
+
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr class="my-b_payments" ng-repeat="b_payment in displayed_bp_collection">
-      <td class="id">
+      <td class="id" myEditableCell="b_payment">
         <div>{{b_payment.id}}</div>
       </td>                        
 
@@ -50,8 +53,35 @@
         <textarea class= "form-control no_border" myEditableCell="b_payment" ng-model="b_payment.detail"></textarea></td>
       <td class="note"        >
         <textarea class= "form-control no_border" myEditableCell="b_payment" ng-model="b_payment.note" ></textarea></td>
-      <td class="btns">
 
+
+      <td class="aaccount">
+        <div class="multiline-select">
+          <ui-select ng-model="b_payment.a_account" on-select="aaccount_changed($select.selected, b_payment)" >
+            <ui-select-match>
+                <span ng-bind="$select.selected.code"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="aaccount in (aaccounts | filter: $select.search) track by aaccount.id">
+                <span ng-bind="aaccount.code + ' ' + aaccount.company_name + ' ' + aaccount.number"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </td>
+
+      <td class="resourcer">
+        <div class="multiline-select">
+          <ui-select ng-model="b_payment.resourcer" on-select="resourcer_changed($select.selected, b_payment)" >
+            <ui-select-match>
+                <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="resourcer in (resourcers | filter: $select.search) track by resourcer.id">
+                <span ng-bind="resourcer.name"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </td>
+
+      <td class="btns">
          <button type="button" ng-if="b_payment.is_changed" ng-click="saveBpayment (b_payment, row)" class="btn btn-success">
             <i class="glyphicon glyphicon-save">
             </i>
