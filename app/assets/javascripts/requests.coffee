@@ -154,8 +154,8 @@ angular
 				'recipient': 'Введите получателя',
 				'detail': 'Назначение платежа',
 				'note': '',
-				'a_account': '1',
-				'resourcer': '1',
+				'a_account': '',
+				'resourcer': '',
 				'is_new': true,
 				'is_changed': true
 			})

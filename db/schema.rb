@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20160802111221) do
 
+  create_table "a_accounts", force: :cascade do |t|
+    t.string   "number",       limit: 255
+    t.string   "company_name", limit: 255
+    t.string   "code",         limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "a_payments", force: :cascade do |t|
     t.string   "payer",             limit: 255
     t.string   "payer_account",     limit: 255
@@ -31,14 +39,6 @@ ActiveRecord::Schema.define(version: 20160802111221) do
   end
 
   add_index "a_payments", ["request_id"], name: "index_a_payments_on_request_id", using: :btree
-
-  create_table "a_accounts", force: :cascade do |t|
-    t.string   "number",       limit: 255
-    t.string   "company_name", limit: 255
-    t.string   "code",         limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
 
   create_table "b_accounts", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160802111221) do
     t.datetime "updated_at",                                                          null: false
     t.boolean  "is_deleted",                                          default: false
     t.integer  "resourcer_id", limit: 4
-    t.integer  "a_account_id",  limit: 4
+    t.integer  "a_account_id", limit: 4
   end
 
   add_index "b_payments", ["a_account_id"], name: "index_b_payments_on_a_account_id", using: :btree

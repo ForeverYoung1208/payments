@@ -1,6 +1,6 @@
 class CreateAAccounts < ActiveRecord::Migration
   def change
-    create_table :aaccounts do |t|
+    create_table :a_accounts do |t|
       t.string :number
       t.string :company_name
       t.string :code

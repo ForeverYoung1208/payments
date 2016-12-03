@@ -14,6 +14,9 @@ module SavePayments
 			bpayment_params = payment_params
 			bpayment_params[:b_account] = BAccount.find(params[:b_account][:id])
 
+#			params[:a_account] ? bpayment_params[:a_account] = AAccount.find(params[:a_account][:id]) : bpayment_params[:a_account] = nil
+			bpayment_params[:a_account] = AAccount.find(bpayment_params[:a_account])
+
 			@payment = BPayment.new( bpayment_params ) 
 			@request.b_payments << @payment
 		end
