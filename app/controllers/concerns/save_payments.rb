@@ -14,8 +14,9 @@ module SavePayments
 			bpayment_params = payment_params
 			bpayment_params[:b_account] = BAccount.find(params[:b_account][:id])
 
-#			params[:a_account] ? bpayment_params[:a_account] = AAccount.find(params[:a_account][:id]) : bpayment_params[:a_account] = nil
-			bpayment_params[:a_account] = AAccount.find(bpayment_params[:a_account])
+			bpayment_params[:a_account] = AAccount.find(params[:a_account][:id]) if (params[:a_account] && params[:a_account] != '')
+			bpayment_params[:resourcer] = Resourcer.find(params[:resourcer][:id]) if (params[:resourcer]	&& params[:resourcer] != '')
+
 
 			@payment = BPayment.new( bpayment_params ) 
 			@request.b_payments << @payment
@@ -42,7 +43,7 @@ module SavePayments
 		
 			full_payment_params[:b_account] = BAccount.find(params[:b_account][:id])
 			full_payment_params[:a_account] = AAccount.find(params[:a_account][:id]) if params[:a_account]
-			full_payment_params[:resourcer] = Resourcer.find(params[:b_account][:id]) if params[:b_account]
+			full_payment_params[:resourcer] = Resourcer.find(params[:resourcer][:id]) if params[:resourcer]
 
 		end
 
